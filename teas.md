@@ -20,5 +20,6 @@ Edit any column. When you're done, tell Claude "apply teas.md" and the HTML will
 | 06  | Puerh Shou China                |                                                                                                      | PUERH SHOU | puerh-shou-china.jpeg |                                                            |
 | 07  | Puerh Pincha                    |                                                                                                      | PUERH SHOU | pincha.jpeg           | 100g · 550k ₫ / 50g · 280k ₫ / 25g · 140k ₫ / 10g · 60k ₫  |
 | 08  | Oolong 12                       | Steamed milk and vanilla cream — a soft white cloud.                                                 | OOLONG     | oolong12.jpeg         | 100g · 400k ₫ / 50g · 200k ₫ / 25g · 100k ₫ / 10g · 50k ₫  |
+| 09  | Myanmar shen puerh              | Myanmar                                                                                              | PUERH SHEN |                       |                                                            |
 
 
