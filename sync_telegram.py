@@ -39,8 +39,19 @@ TEAS_MD = os.path.join(HERE, "teas.md")
 PHOTOS_DIR = os.path.join(HERE, "photos")
 STATE_FILE = os.path.join(HERE, "telegram_state.json")
 ENV_FILE = os.path.join(HERE, ".env")
+LINKS_FILE = os.path.join(HERE, "links.json")
 API = "https://api.telegram.org/bot{token}/{method}"
 SLEEP = 0.5  # seconds between write operations (rate limit headroom)
+
+# A "website" URL button is added to every post. Set to None to disable.
+WEBSITE_URL = "https://d333mianh.github.io/hoiantea/"
+WEBSITE_LABEL = "website"
+
+# A single "index" post is kept first in the channel: a grouped catalogue
+# where each tea name links to its own post. PIN_INDEX pins it to the top.
+INDEX_HEADER = "🍵 ROJUL TEAS — catalogue"
+INDEX_FOOTER = "→ tap a tea to open its post"
+PIN_INDEX = True
 
 
 # ---------- env ----------
@@ -169,6 +180,81 @@ def content_hash(tea, cap):
     return h.hexdigest()
 
 
+def load_links():
+    """Per-tea extra URL buttons, keyed by tea slug:
+       { "gaba-ruby": [{"text": "огляд gabaruby", "url": "https://..."}] }
+    """
+    if os.path.exists(LINKS_FILE):
+        with open(LINKS_FILE, encoding="utf-8") as fh:
+            return json.load(fh)
+    return {}
+
+
+def build_markup(tea, links):
+    """Inline keyboard: a global website button + any per-tea links,
+    laid out two buttons per row. Returns None if there are no buttons."""
+    btns = []
+    if WEBSITE_URL:
+        btns.append({"text": WEBSITE_LABEL, "url": WEBSITE_URL})
+    for b in links.get(slug(tea["name"]), []):
+        btns.append({"text": b["text"], "url": b["url"]})
+    if not btns:
+        return None
+    rows = [btns[i:i + 2] for i in range(0, len(btns), 2)]
+    return {"inline_keyboard": rows}
+
+
+def markup_key(markup):
+    """Stable string for change-detection."""
+    return json.dumps(markup, sort_keys=True, ensure_ascii=False) if markup else ""
+
+
+# ---------- index post ----------
+
+def channel_username(chat):
+    """Public @username (without @) if chat_id is a username, else None.
+    Needed to build t.me/<username>/<message_id> deep links."""
+    if isinstance(chat, str) and chat.startswith("@"):
+        return chat[1:]
+    return None
+
+
+def index_markup():
+    """The index post carries only the global website button (if set)."""
+    if WEBSITE_URL:
+        return {"inline_keyboard": [[{"text": WEBSITE_LABEL, "url": WEBSITE_URL}]]}
+    return None
+
+
+def build_index_text(teas, items, username):
+    """Grouped catalogue: teas under their category heading (first tag), each
+    name an HTML link to its own post. Category order follows first appearance
+    in teas.md. Links are emitted only when we know the post's message_id."""
+    groups = []           # [(category, [tea, ...]), ...]
+    pos = {}              # category -> index in groups
+    for tea in teas:
+        cat = tea["tags"][0].lstrip("*").strip() if tea["tags"] else "OTHER"
+        if cat not in pos:
+            pos[cat] = len(groups)
+            groups.append((cat, []))
+        groups[pos[cat]][1].append(tea)
+
+    lines = [f"<b>{html.escape(INDEX_HEADER)}</b>", ""]
+    for cat, ts in groups:
+        lines.append(f"<b>{html.escape(cat)}</b>")
+        for tea in ts:
+            name = html.escape(tea["name"])
+            entry = items.get(slug(tea["name"]))
+            mid = entry.get("message_id") if entry else None
+            if username and mid:
+                lines.append(f'• <a href="https://t.me/{username}/{mid}">{name}</a>')
+            else:
+                lines.append(f"• {name}")
+        lines.append("")
+    lines.append(html.escape(INDEX_FOOTER))
+    return "\n".join(lines)
+
+
 # ---------- state ----------
 
 def load_state():
@@ -192,10 +278,15 @@ def main():
                     help="print actions and verify channel access; change nothing")
     ap.add_argument("--prune", action="store_true",
                     help="delete posts for teas no longer in teas.md")
+    ap.add_argument("--reset", action="store_true",
+                    help="delete ALL posts this tool made (index + every tea) "
+                         "and clear state, then rebuild from scratch with the "
+                         "index post first")
     args = ap.parse_args()
 
     token, chat = load_env()
     teas = parse_teas()
+    links = load_links()
     state = load_state()
     items = state.setdefault("items", {})
     seen = set()
@@ -211,11 +302,66 @@ def main():
     else:
         must(chat_info, "getChat")
 
+    username = channel_username(chat)
+    if not username:
+        print("note: chat_id is not a public @username — index post will list "
+              "tea names without links.")
+
+    # --reset: delete everything this tool created, then rebuild below.
+    if args.reset:
+        targets = [(v["message_id"], v.get("name", k)) for k, v in items.items()]
+        if state.get("index"):
+            targets.append((state["index"]["message_id"], "INDEX"))
+        if args.dry_run:
+            print(f"--reset would delete {len(targets)} messages, then rebuild:")
+            for mid, name in targets:
+                print(f"  delete msg {mid}  ({name})")
+            print()
+        else:
+            for mid, name in targets:
+                r = api(token, "deleteMessage",
+                        {"chat_id": chat, "message_id": mid})
+                ok = "deleted" if r.get("ok") else f"skip ({r.get('description')})"
+                print(f"  {ok}: msg {mid} ({name})")
+                time.sleep(SLEEP)
+            state = {"items": {}}
+            items = state["items"]
+            save_state(state)
+            print("state cleared; rebuilding.\n")
+
+    # Index post is created first so it is the oldest (top) post in the channel.
+    # On a fresh channel it goes up as a placeholder, then gets filled with
+    # per-tea links once every tea has a message_id (after the loop below).
+    if state.get("index") is None and not args.dry_run:
+        placeholder = f"<b>{html.escape(INDEX_HEADER)}</b>\n\n…"
+        params = {"chat_id": chat, "text": placeholder, "parse_mode": "HTML",
+                  "disable_web_page_preview": "true"}
+        imk = index_markup()
+        if imk:
+            params["reply_markup"] = json.dumps(imk)
+        res = must(api(token, "sendMessage", params), "sendMessage(index)")
+        mid = res["message_id"]
+        state["index"] = {"message_id": mid, "hash": "", "pinned": False}
+        if PIN_INDEX:
+            pin = api(token, "pinChatMessage",
+                      {"chat_id": chat, "message_id": mid,
+                       "disable_notification": "true"})
+            state["index"]["pinned"] = bool(pin.get("ok"))
+            if not pin.get("ok"):
+                print(f"  (could not pin index: {pin.get('description')} — "
+                      f"grant the bot 'Pin Messages' and rerun)")
+        save_state(state)
+        print(f"index posted -> message_id={mid}"
+              + ("  [pinned]" if state["index"]["pinned"] else ""))
+        time.sleep(SLEEP)
+
     for tea in teas:
         key = slug(tea["name"])
         seen.add(key)
         cap = caption(tea)
         digest = content_hash(tea, cap)
+        markup = build_markup(tea, links)
+        mkey = markup_key(markup)
         photo_path = (os.path.join(PHOTOS_DIR, tea["photo"])
                       if tea["photo"] else None)
         if photo_path and not os.path.exists(photo_path):
@@ -223,67 +369,97 @@ def main():
                   f"skipping")
             continue
         prev = items.get(key)
+        n_btns = sum(len(r) for r in markup["inline_keyboard"]) if markup else 0
 
         if prev is None:
             action = "POST (new)"
         elif prev.get("hash") != digest:
-            action = "EDIT (changed)"
+            action = "EDIT content"
+        elif prev.get("markup", "") != mkey:
+            action = "EDIT buttons"
         else:
             print(f"[{tea['idx']}] {tea['name']}: unchanged")
             continue
 
         if args.dry_run:
             print(f"[{tea['idx']}] {action}: {tea['name']}  "
-                  f"photo={tea['photo']}")
+                  f"photo={tea['photo']}  buttons={n_btns}")
             print("    " + cap.replace("\n", "\n    "))
+            if markup:
+                labels = [b["text"] for r in markup["inline_keyboard"] for b in r]
+                print("    [buttons] " + " | ".join(labels))
             print()
             continue
 
+        reply_markup = json.dumps(markup) if markup else None
+
         if prev is None:
+            params = {"chat_id": chat, "parse_mode": "HTML"}
+            if reply_markup:
+                params["reply_markup"] = reply_markup
             if photo_path:
-                res = must(api(token, "sendPhoto",
-                               {"chat_id": chat, "caption": cap,
-                                "parse_mode": "HTML"}, photo_path), "sendPhoto")
+                params["caption"] = cap
+                res = must(api(token, "sendPhoto", params, photo_path),
+                           "sendPhoto")
             else:
-                res = must(api(token, "sendMessage",
-                               {"chat_id": chat, "text": cap,
-                                "parse_mode": "HTML"}), "sendMessage")
+                params["text"] = cap
+                res = must(api(token, "sendMessage", params), "sendMessage")
             items[key] = {"message_id": res["message_id"], "hash": digest,
-                          "has_photo": bool(photo_path), "name": tea["name"]}
+                          "markup": mkey, "has_photo": bool(photo_path),
+                          "name": tea["name"]}
             print(f"[{tea['idx']}] posted: {tea['name']} "
-                  f"-> message_id={res['message_id']}")
+                  f"-> message_id={res['message_id']} ({n_btns} buttons)")
         else:
             mid = prev["message_id"]
             had_photo = prev.get("has_photo", False)
             now_photo = bool(photo_path)
+            content_changed = prev.get("hash") != digest
             if had_photo != now_photo:
                 # media presence changed: delete + repost
                 api(token, "deleteMessage", {"chat_id": chat, "message_id": mid})
+                params = {"chat_id": chat, "parse_mode": "HTML"}
+                if reply_markup:
+                    params["reply_markup"] = reply_markup
                 if now_photo:
-                    res = must(api(token, "sendPhoto",
-                                   {"chat_id": chat, "caption": cap,
-                                    "parse_mode": "HTML"}, photo_path), "sendPhoto")
+                    params["caption"] = cap
+                    res = must(api(token, "sendPhoto", params, photo_path),
+                               "sendPhoto")
                 else:
-                    res = must(api(token, "sendMessage",
-                                   {"chat_id": chat, "text": cap,
-                                    "parse_mode": "HTML"}), "sendMessage")
+                    params["text"] = cap
+                    res = must(api(token, "sendMessage", params), "sendMessage")
                 prev["message_id"] = res["message_id"]
                 print(f"[{tea['idx']}] reposted (media changed): {tea['name']} "
                       f"-> message_id={res['message_id']}")
-            elif now_photo:
+            elif content_changed and now_photo:
                 media = {"type": "photo", "media": "attach://photo",
                          "caption": cap, "parse_mode": "HTML"}
-                must(api(token, "editMessageMedia",
-                         {"chat_id": chat, "message_id": mid,
-                          "media": json.dumps(media)}, photo_path),
+                params = {"chat_id": chat, "message_id": mid,
+                          "media": json.dumps(media)}
+                if reply_markup:
+                    params["reply_markup"] = reply_markup
+                must(api(token, "editMessageMedia", params, photo_path),
                      "editMessageMedia")
-                print(f"[{tea['idx']}] edited: {tea['name']} (msg {mid})")
+                print(f"[{tea['idx']}] edited content+buttons: {tea['name']} "
+                      f"(msg {mid})")
+            elif content_changed:
+                params = {"chat_id": chat, "message_id": mid, "text": cap,
+                          "parse_mode": "HTML"}
+                if reply_markup:
+                    params["reply_markup"] = reply_markup
+                must(api(token, "editMessageText", params), "editMessageText")
+                print(f"[{tea['idx']}] edited content+buttons: {tea['name']} "
+                      f"(msg {mid})")
             else:
-                must(api(token, "editMessageText",
-                         {"chat_id": chat, "message_id": mid, "text": cap,
-                          "parse_mode": "HTML"}), "editMessageText")
-                print(f"[{tea['idx']}] edited: {tea['name']} (msg {mid})")
+                # only buttons changed
+                params = {"chat_id": chat, "message_id": mid}
+                params["reply_markup"] = reply_markup or json.dumps(
+                    {"inline_keyboard": []})
+                must(api(token, "editMessageReplyMarkup", params),
+                     "editMessageReplyMarkup")
+                print(f"[{tea['idx']}] edited buttons ({n_btns}): "
+                      f"{tea['name']} (msg {mid})")
             prev["hash"] = digest
+            prev["markup"] = mkey
             prev["name"] = tea["name"]
 
         save_state(state)
@@ -305,6 +481,26 @@ def main():
         else:
             print(f"stale (not in teas.md, kept — rerun with --prune to delete): "
                   f"{entry.get('name', k)} (msg {entry['message_id']})")
+
+    # rebuild the index post body now that every tea has a message_id
+    idx_text = build_index_text(teas, items, username)
+    if args.dry_run:
+        print("\nINDEX post preview:")
+        print("    " + idx_text.replace("\n", "\n    "))
+    elif state.get("index"):
+        idx_hash = hashlib.sha256(idx_text.encode()).hexdigest()
+        if state["index"].get("hash") != idx_hash:
+            params = {"chat_id": chat, "message_id": state["index"]["message_id"],
+                      "text": idx_text, "parse_mode": "HTML",
+                      "disable_web_page_preview": "true"}
+            imk = index_markup()
+            if imk:
+                params["reply_markup"] = json.dumps(imk)
+            must(api(token, "editMessageText", params), "editMessageText(index)")
+            state["index"]["hash"] = idx_hash
+            print("index updated.")
+        else:
+            print("index unchanged.")
 
     if not args.dry_run:
         save_state(state)

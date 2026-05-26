@@ -1,0 +1,51 @@
+name: Telegram catalogue sync
+
+# Mirrors teas.md into the @hoiantea channel automatically. Runs on pushes that
+# touch the catalogue (or on demand). State lives in telegram_state.json, which
+# is committed back after each run so reruns edit existing posts instead of
+# re-posting duplicates. Pruning (deleting posts for removed teas) stays manual.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - teas.md
+      - links.json
+      - photos/**
+      - sync_telegram.py
+  workflow_dispatch:
+
+concurrency:
+  group: telegram-sync          # never let two syncs race on the state file
+  cancel-in-progress: false
+
+permissions:
+  contents: write               # to commit the updated state file back
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Sync channel
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python3 sync_telegram.py   # no --prune: too destructive for CI
+
+      - name: Commit updated state
+        run: |
+          if ! git diff --quiet telegram_state.json; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add telegram_state.json
+            git commit -m "chore: sync telegram_state.json [skip ci]"
+            git push
+          else
+            echo "state unchanged — nothing to commit"
+          fi

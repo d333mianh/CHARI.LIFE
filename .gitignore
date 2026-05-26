@@ -5,4 +5,7 @@
 .env
 .venv/
 __pycache__/
-telegram_state.json
+
+# telegram_state.json is intentionally tracked: the GitHub Action (.github/
+# workflows/telegram-sync.yml) needs persisted state across runs, else CI would
+# re-post every tea as a duplicate. It holds only message_ids/hashes — no secrets.
