@@ -76,18 +76,11 @@
       "markup": "{\"inline_keyboard\": [[{\"text\": \"website\", \"url\": \"https://d333mianh.github.io/hoiantea/\"}]]}",
       "has_photo": true,
       "name": "Laos 400yo"
-    },
-    "qi-lan": {
-      "message_id": 46,
-      "hash": "98dcaaa6542281cddc5a22de0b00cb5027a445c5c502077d9c3818b7b264a685",
-      "markup": "{\"inline_keyboard\": [[{\"text\": \"website\", \"url\": \"https://d333mianh.github.io/hoiantea/\"}]]}",
-      "has_photo": true,
-      "name": "Qi Lan"
     }
   },
   "index": {
     "message_id": 33,
-    "hash": "2b2470baf0b432a263d015928d4b696935903ba2a0cefe4dd29bf79add74dc65",
+    "hash": "6fd7961e01b75e83545c2d6d99f6b868daad8672684f9e2bba4cabc45706a7eb",
     "pinned": true
   }
 }
