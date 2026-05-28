@@ -13,7 +13,7 @@ Setup (one time):
      "Edit Messages of Others" off but "Edit Messages" + "Delete Messages" on.
   3. Create webtea/.env (gitignored):
        TELEGRAM_BOT_TOKEN=123456:ABC...
-       TELEGRAM_CHAT_ID=@hoiantea
+       TELEGRAM_CHAT_ID=@chariteas
 
 Usage:
   python3 sync_telegram.py --dry-run     # show what would happen, verify access

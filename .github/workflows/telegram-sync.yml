@@ -1,6 +1,6 @@
 name: Telegram catalogue sync
 
-# Mirrors teas.md into the @hoiantea channel automatically. Runs on pushes that
+# Mirrors teas.md into the @chariteas channel automatically. Runs on pushes that
 # touch the catalogue (or on demand). State lives in telegram_state.json, which
 # is committed back after each run so reruns edit existing posts instead of
 # re-posting duplicates. Pruning (deleting posts for removed teas) stays manual.

@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A single-page static site for **Rojul Teas** (brand "ROJUL TEAS", Telegram-only ordering, no buy flow) plus a tool that mirrors the same catalogue into the Telegram channel **@hoiantea**. No build step, no framework — plain HTML/CSS and one zero-dependency Python script.
+A single-page static site for **Roman&Julia teas** (brand "Roman&Julia teas", Telegram-only ordering, no buy flow) plus a tool that mirrors the same catalogue into the Telegram channel **@chariteas**. No build step, no framework — plain HTML/CSS and one zero-dependency Python script.
 
-The repo is also the **GitHub Pages source**: pushing to `main` republishes the live site at https://d333mianh.github.io/hoiantea/ (remote `d333mianh/hoiantea`). Treat the repo as **public** — secrets live only in `.env` (gitignored).
+The repo is also the **GitHub Pages source**: pushing to `main` republishes the live site at https://chari.life/ (remote `d333mianh/hoiantea`). Treat the repo as **public** — secrets live only in `.env` (gitignored).
 
 Pushing to `main` also **auto-syncs the Telegram channel**: `.github/workflows/telegram-sync.yml` runs `sync_telegram.py` whenever `teas.md`, `links.json`, `photos/`, or the script change (uses repo secrets `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID`). So in practice "apply teas.md" = edit `index.html` + `teas.md`, commit, push — the channel updates itself. Running the script locally is now optional (useful for `--dry-run`, `--prune`, or `--reset`, which the Action never does).
 
