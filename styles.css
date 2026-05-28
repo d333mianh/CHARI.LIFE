@@ -205,6 +205,14 @@ img.tea-photo {
   font-size: 11px;
   letter-spacing: 0.16em;
   border: 1px solid oklch(0.7 0.018 50);
+  overflow: hidden;
+}
+
+.story-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .story-body {
