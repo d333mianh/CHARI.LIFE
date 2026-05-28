@@ -44,7 +44,7 @@ API = "https://api.telegram.org/bot{token}/{method}"
 SLEEP = 0.5  # seconds between write operations (rate limit headroom)
 
 # A "website" URL button is added to every post. Set to None to disable.
-WEBSITE_URL = "https://d333mianh.github.io/hoiantea/"
+WEBSITE_URL = "https://chari.life/"
 WEBSITE_LABEL = "website"
 
 # A single "index" post is kept first in the channel: a grouped catalogue
