@@ -49,7 +49,7 @@ WEBSITE_LABEL = "website"
 
 # A single "index" post is kept first in the channel: a grouped catalogue
 # where each tea name links to its own post. PIN_INDEX pins it to the top.
-INDEX_HEADER = "🍵 ROJUL TEAS — catalogue"
+INDEX_HEADER = "🍵 Roman&Julia teas — catalogue"
 INDEX_FOOTER = "→ tap a tea to open its post"
 PIN_INDEX = True
 
@@ -341,7 +341,8 @@ def main():
             params["reply_markup"] = json.dumps(imk)
         res = must(api(token, "sendMessage", params), "sendMessage(index)")
         mid = res["message_id"]
-        state["index"] = {"message_id": mid, "hash": "", "pinned": False}
+        state["index"] = {"message_id": mid, "hash": "", "pinned": False,
+                          "markup": markup_key(imk)}
         if PIN_INDEX:
             pin = api(token, "pinChatMessage",
                       {"chat_id": chat, "message_id": mid,
@@ -489,16 +490,29 @@ def main():
         print("    " + idx_text.replace("\n", "\n    "))
     elif state.get("index"):
         idx_hash = hashlib.sha256(idx_text.encode()).hexdigest()
-        if state["index"].get("hash") != idx_hash:
+        imk = index_markup()
+        imk_key = markup_key(imk)
+        text_changed = state["index"].get("hash") != idx_hash
+        markup_changed = state["index"].get("markup", "") != imk_key
+        if text_changed:
             params = {"chat_id": chat, "message_id": state["index"]["message_id"],
                       "text": idx_text, "parse_mode": "HTML",
                       "disable_web_page_preview": "true"}
-            imk = index_markup()
             if imk:
                 params["reply_markup"] = json.dumps(imk)
             must(api(token, "editMessageText", params), "editMessageText(index)")
             state["index"]["hash"] = idx_hash
+            state["index"]["markup"] = imk_key
             print("index updated.")
+        elif markup_changed:
+            params = {"chat_id": chat,
+                      "message_id": state["index"]["message_id"]}
+            if imk:
+                params["reply_markup"] = json.dumps(imk)
+            must(api(token, "editMessageReplyMarkup", params),
+                 "editMessageReplyMarkup(index)")
+            state["index"]["markup"] = imk_key
+            print("index buttons updated.")
         else:
             print("index unchanged.")
 

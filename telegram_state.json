@@ -80,7 +80,8 @@
   },
   "index": {
     "message_id": 33,
-    "hash": "6fd7961e01b75e83545c2d6d99f6b868daad8672684f9e2bba4cabc45706a7eb",
-    "pinned": true
+    "hash": "2c091923d7621910ef1a2a2ec3a632ba1140c7d069b524465508807cfad5fc56",
+    "pinned": true,
+    "markup": "{\"inline_keyboard\": [[{\"text\": \"website\", \"url\": \"https://chari.life/\"}]]}"
   }
 }
