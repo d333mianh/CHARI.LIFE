@@ -36,6 +36,7 @@ import uuid
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TEAS_MD = os.path.join(HERE, "teas.md")
+SETS_MD = os.path.join(HERE, "sets.md")
 PHOTOS_DIR = os.path.join(HERE, "photos")
 STATE_FILE = os.path.join(HERE, "telegram_state.json")
 ENV_FILE = os.path.join(HERE, ".env")
@@ -121,11 +122,16 @@ def must(resp, context):
     return resp["result"]
 
 
-# ---------- teas.md parsing ----------
+# ---------- markdown table parsing ----------
 
-def parse_teas():
-    teas = []
-    with open(TEAS_MD, encoding="utf-8") as fh:
+def parse_table(path, key_prefix=""):
+    """Parse a teas.md-style pipe table. Each record's state key is
+    key_prefix + slug(name) so sources (teas, sets) never collide while teas
+    keep their original plain-slug keys for backward compatibility."""
+    rows = []
+    if not os.path.exists(path):
+        return rows
+    with open(path, encoding="utf-8") as fh:
         for line in fh:
             line = line.rstrip("\n")
             if not line.startswith("|"):
@@ -138,15 +144,16 @@ def parse_teas():
             idx, name, desc, tags, photo, price = cells[:6]
             if not re.match(r"^\d+$", idx):  # skip header + separator rows
                 continue
-            teas.append({
+            rows.append({
                 "idx": idx,
                 "name": name,
                 "desc": desc,
                 "tags": [t.strip() for t in tags.split("|") if t.strip()],
                 "photo": photo or None,
                 "price": [p.strip() for p in price.split("/") if p.strip()],
+                "key": key_prefix + slug(name),
             })
-    return teas
+    return rows
 
 
 def slug(name):
@@ -244,7 +251,7 @@ def build_index_text(teas, items, username):
         lines.append(f"<b>{html.escape(cat)}</b>")
         for tea in ts:
             name = html.escape(tea["name"])
-            entry = items.get(slug(tea["name"]))
+            entry = items.get(tea["key"])
             mid = entry.get("message_id") if entry else None
             if username and mid:
                 lines.append(f'• <a href="https://t.me/{username}/{mid}">{name}</a>')
@@ -285,7 +292,9 @@ def main():
     args = ap.parse_args()
 
     token, chat = load_env()
-    teas = parse_teas()
+    teas = parse_table(TEAS_MD)
+    sets = parse_table(SETS_MD, key_prefix="set-")
+    catalogue = teas + sets
     links = load_links()
     state = load_state()
     items = state.setdefault("items", {})
@@ -298,7 +307,8 @@ def main():
             print(f"channel OK: {r.get('title')} ({r.get('type')})  id={r.get('id')}")
         else:
             print(f"channel access FAILED: {chat_info.get('description')}")
-        print(f"parsed {len(teas)} teas from teas.md\n")
+        print(f"parsed {len(teas)} teas from teas.md, "
+              f"{len(sets)} sets from sets.md\n")
     else:
         must(chat_info, "getChat")
 
@@ -356,8 +366,8 @@ def main():
               + ("  [pinned]" if state["index"]["pinned"] else ""))
         time.sleep(SLEEP)
 
-    for tea in teas:
-        key = slug(tea["name"])
+    for tea in catalogue:
+        key = tea["key"]
         seen.add(key)
         cap = caption(tea)
         digest = content_hash(tea, cap)
@@ -480,11 +490,11 @@ def main():
             print(f"pruned: {entry.get('name', k)} "
                   f"(msg {entry['message_id']})")
         else:
-            print(f"stale (not in teas.md, kept — rerun with --prune to delete): "
-                  f"{entry.get('name', k)} (msg {entry['message_id']})")
+            print(f"stale (not in teas.md/sets.md, kept — rerun with --prune "
+                  f"to delete): {entry.get('name', k)} (msg {entry['message_id']})")
 
     # rebuild the index post body now that every tea has a message_id
-    idx_text = build_index_text(teas, items, username)
+    idx_text = build_index_text(catalogue, items, username)
     if args.dry_run:
         print("\nINDEX post preview:")
         print("    " + idx_text.replace("\n", "\n    "))

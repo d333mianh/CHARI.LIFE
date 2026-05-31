@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths:
       - teas.md
+      - sets.md
       - links.json
       - photos/**
       - sync_telegram.py
