@@ -8,7 +8,7 @@ A single-page static site for **Roman&Julia teas** (brand "Roman&Julia teas", Te
 
 The repo is also the **GitHub Pages source**: pushing to `main` republishes the live site at https://chari.life/ (remote `d333mianh/hoiantea`). Treat the repo as **public** — secrets live only in `.env` (gitignored).
 
-Pushing to `main` also **auto-syncs the Telegram channel**: `.github/workflows/telegram-sync.yml` runs `sync_telegram.py` whenever `teas.md`, `sets.md`, `links.json`, `photos/`, or the script change (uses repo secrets `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID`). So in practice "apply teas.md" = edit `index.html` + `teas.md`, commit, push — the channel updates itself. Running the script locally is now optional (useful for `--dry-run`, `--prune`, or `--reset`, which the Action never does).
+Pushing to `main` also **auto-syncs the Telegram channel**: `.github/workflows/telegram-sync.yml` runs `sync_telegram.py` whenever `teas.md`, `sets.html`, `links.json`, `photos/`, or the script change (uses repo secrets `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID`). So in practice "apply teas.md" = edit `index.html` + `teas.md`, commit, push — the channel updates itself. Running the script locally is now optional (useful for `--dry-run`, `--prune`, or `--reset`, which the Action never does).
 
 ## The central idea: `teas.md` is the single source of truth
 
@@ -19,7 +19,7 @@ Pushing to `main` also **auto-syncs the Telegram channel**: `.github/workflows/t
 
 So a typical "apply teas.md" request means: edit `index.html`'s tea rows to match, then (if asked) run the Telegram sync.
 
-**Drink sets** work the same way via a parallel source, `sets.md` (same column format). It feeds `sets.html` (manual mirror) and the Telegram channel — `sync_telegram.py` calls `parse_table()` on both files and posts sets with `set-`-prefixed state keys (so they never collide with teas), grouped under a "DRINK SETS" heading in the index. There's also a static `ceremony.html` page (no markdown source). The three site pages are linked from the upper-left nav (`index.html` = Catalogue, `sets.html` = Drink Set, `ceremony.html` = Ceremony).
+**Drink sets are different: `sets.html` (the website page) is itself the source of truth — there is no `sets.md`.** The owner edits set cards directly in `sets.html`, so to avoid drift the Telegram sync parses that page (`sync_telegram.py`'s `parse_cards_html()` reads the `.tea` cards: name/desc/tags/price/photo). Sets post with `set-`-prefixed state keys (so they never collide with teas) and are grouped in the index under their first tag (currently `SET`). This means **editing a set on the website and pushing auto-syncs Telegram** — no second file to keep in step. There's also a static `ceremony.html` page (no data source). The three site pages are linked from the upper-left nav (`index.html` = Catalogue, `sets.html` = Drink Set, `ceremony.html` = Ceremony).
 
 ### `teas.md` column → output mapping
 
@@ -82,8 +82,7 @@ Zero dependencies (stdlib `urllib`/`json`/`hashlib` only). Posts via the Telegra
 
 - `index.html` (Catalogue) / `sets.html` (Drink Set) / `ceremony.html` (Ceremony) / `styles.css` — the site pages + external stylesheet, linked from the upper-left nav.
 - `teas.md` — source-of-truth tea catalogue table (also the owner's editing surface).
-- `sets.md` — source-of-truth drink-sets table (same format); feeds `sets.html` + Telegram.
-- `sync_telegram.py` — Telegram channel sync (teas + sets); `.env.example` documents required vars.
+- `sync_telegram.py` — Telegram channel sync: teas from `teas.md`, sets parsed straight from `sets.html`; `.env.example` documents required vars.
 - `links.json` — per-tea Telegram button links (keyed by slug).
 - `photos/` — compressed catalogue images referenced by `teas.md`/`index.html`.
 - `.github/workflows/telegram-sync.yml` — CI that auto-runs the Telegram sync on push to `main` and commits the updated state back.

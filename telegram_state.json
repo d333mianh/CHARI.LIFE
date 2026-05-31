@@ -79,29 +79,36 @@
     },
     "set-amber-kyusu-set": {
       "message_id": 16,
-      "hash": "5fccc83df9a74cdadb17ab6bdef0ac7923836e0c6854c8cbb41f1ec7f42fdcef",
+      "hash": "ad244c30c18c9f2b82981cf053566a2ba323c03ddf4045bab474eca2237f0a3a",
       "markup": "{\"inline_keyboard\": [[{\"text\": \"website\", \"url\": \"https://chari.life/\"}]]}",
       "has_photo": true,
       "name": "Amber Kyusu Set"
     },
     "set-charcoal-kyusu-set": {
       "message_id": 17,
-      "hash": "9054863a793e5864593b7c8aa6ee5333fdbd7857b4ab6225e0abd329a2ac8f2c",
+      "hash": "daa218e576f7c639a561f71b64780fd18b87362aed8a2118f7badcd9ddec9389",
       "markup": "{\"inline_keyboard\": [[{\"text\": \"website\", \"url\": \"https://chari.life/\"}]]}",
       "has_photo": true,
       "name": "Charcoal Kyusu Set"
     },
     "set-lotus-porcelain-set": {
       "message_id": 18,
-      "hash": "a0811a70d0f57d9f9e97ab65b700f0e0724ee2c689aa8e7883454a64ae4e1dc4",
+      "hash": "bec89d14dc6b619633e7c14b8cc07742fe55f0c28387ec4efb3a0673abd445de",
       "markup": "{\"inline_keyboard\": [[{\"text\": \"website\", \"url\": \"https://chari.life/\"}]]}",
       "has_photo": true,
       "name": "Lotus Porcelain Set"
+    },
+    "set-craft-tea-bowls": {
+      "message_id": 19,
+      "hash": "d3b30a13f4a81d4bcc86bcaa07ceeb724284dba0ca70aec3b50f213fd97a60dc",
+      "markup": "{\"inline_keyboard\": [[{\"text\": \"website\", \"url\": \"https://chari.life/\"}]]}",
+      "has_photo": true,
+      "name": "Craft Tea Bowls"
     }
   },
   "index": {
     "message_id": 3,
-    "hash": "0757465ae6afed15ca485e0b735d25be12d8a9ca21e4f78fe819cbf9748056b7",
+    "hash": "",
     "pinned": true,
     "markup": "{\"inline_keyboard\": [[{\"text\": \"website\", \"url\": \"https://chari.life/\"}]]}"
   }

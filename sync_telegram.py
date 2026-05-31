@@ -29,6 +29,7 @@ import os
 import re
 import sys
 import time
+from html.parser import HTMLParser
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -36,7 +37,7 @@ import uuid
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TEAS_MD = os.path.join(HERE, "teas.md")
-SETS_MD = os.path.join(HERE, "sets.md")
+SETS_HTML = os.path.join(HERE, "sets.html")  # sets are sourced from the website
 PHOTOS_DIR = os.path.join(HERE, "photos")
 STATE_FILE = os.path.join(HERE, "telegram_state.json")
 ENV_FILE = os.path.join(HERE, ".env")
@@ -158,6 +159,98 @@ def parse_table(path, key_prefix=""):
 
 def slug(name):
     return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
+class _CardParser(HTMLParser):
+    """Extracts `.tea` cards from a site page (sets.html / index.html) so the
+    website itself is the source of truth — no separate markdown to drift from.
+    Reads each card's name, description, tags, price segments, and photo."""
+
+    def __init__(self):
+        super().__init__()
+        self.cards = []
+        self.cur = None          # card being built, or None when outside a card
+        self.field = None        # which field text is flowing into right now
+        self.buf = []
+
+    def _flush(self):
+        return "".join(self.buf).strip()
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        classes = a.get("class", "").split()
+        if tag == "div" and "tea" in classes:
+            self.cur = {"name": "", "desc": "", "tags": [],
+                        "price_parts": [], "photo": None}
+            self.cards.append(self.cur)
+            return
+        if self.cur is None:
+            return
+        if tag == "img" and "tea-photo" in classes:
+            src = a.get("src", "")
+            if src.startswith("photos/"):
+                self.cur["photo"] = src[len("photos/"):]
+        elif tag == "h3" and "tea-name" in classes:
+            self.field, self.buf = "name", []
+        elif tag == "p" and "tea-sub" in classes:
+            self.field, self.buf = "desc", []
+        elif tag == "span" and "tea-tag" in classes:
+            self.field, self.buf = "tag", []
+        elif tag == "div" and "tea-price" in classes:
+            self.field, self.buf = "price", []
+        elif tag == "br" and self.field == "price":
+            seg = self._flush()
+            if seg:
+                self.cur["price_parts"].append(seg)
+            self.buf = []
+
+    def handle_data(self, data):
+        if self.field:
+            self.buf.append(data)
+
+    def handle_endtag(self, tag):
+        if self.cur is None or self.field is None:
+            return
+        if self.field == "name" and tag == "h3":
+            self.cur["name"] = self._flush()
+            self.field = None
+        elif self.field == "desc" and tag == "p":
+            self.cur["desc"] = self._flush()
+            self.field = None
+        elif self.field == "tag" and tag == "span":
+            t = self._flush()
+            if t:
+                self.cur["tags"].append(t)
+            self.field = None
+        elif self.field == "price" and tag == "div":
+            seg = self._flush()
+            if seg:
+                self.cur["price_parts"].append(seg)
+            self.field = None
+
+
+def parse_cards_html(path, key_prefix=""):
+    """Parse `.tea` cards out of a site page. Same record shape as
+    parse_table(), so downstream code (caption, hash, posting) is identical."""
+    rows = []
+    if not os.path.exists(path):
+        return rows
+    with open(path, encoding="utf-8") as fh:
+        p = _CardParser()
+        p.feed(fh.read())
+    for i, c in enumerate(p.cards, 1):
+        if not c["name"]:
+            continue
+        rows.append({
+            "idx": f"{i:02d}",
+            "name": html.unescape(c["name"]),
+            "desc": html.unescape(c["desc"]),
+            "tags": [html.unescape(t) for t in c["tags"]],
+            "photo": c["photo"],
+            "price": [html.unescape(p_) for p_ in c["price_parts"]],
+            "key": key_prefix + slug(html.unescape(c["name"])),
+        })
+    return rows
 
 
 def caption(tea):
@@ -293,7 +386,7 @@ def main():
 
     token, chat = load_env()
     teas = parse_table(TEAS_MD)
-    sets = parse_table(SETS_MD, key_prefix="set-")
+    sets = parse_cards_html(SETS_HTML, key_prefix="set-")
     catalogue = teas + sets
     links = load_links()
     state = load_state()
@@ -308,7 +401,7 @@ def main():
         else:
             print(f"channel access FAILED: {chat_info.get('description')}")
         print(f"parsed {len(teas)} teas from teas.md, "
-              f"{len(sets)} sets from sets.md\n")
+              f"{len(sets)} sets from sets.html\n")
     else:
         must(chat_info, "getChat")
 
@@ -490,7 +583,7 @@ def main():
             print(f"pruned: {entry.get('name', k)} "
                   f"(msg {entry['message_id']})")
         else:
-            print(f"stale (not in teas.md/sets.md, kept — rerun with --prune "
+            print(f"stale (not in teas.md/sets.html, kept — rerun with --prune "
                   f"to delete): {entry.get('name', k)} (msg {entry['message_id']})")
 
     # rebuild the index post body now that every tea has a message_id
