@@ -41,6 +41,15 @@ html, body {
 .nav-left { display: flex; gap: 32px; }
 .nav-right { display: flex; gap: 32px; justify-content: flex-end; }
 .nav-right a { color: inherit; text-decoration: none; }
+.nav-left a {
+  color: inherit;
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+.nav-left a:hover { color: oklch(0.2 0.012 50); }
+.nav-left a.active { border-bottom-color: oklch(0.55 0.13 35); }
 
 .logo {
   font-family: "Shippori Mincho", Georgia, serif;
@@ -56,6 +65,27 @@ html, body {
   position: relative;
   padding: 120px 64px;
   border-bottom: 1px solid oklch(0.78 0.018 60);
+}
+
+.page-head {
+  margin-bottom: 72px;
+  max-width: 760px;
+}
+.page-title {
+  font-family: "Shippori Mincho", serif;
+  font-size: 56px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin: 0 0 20px;
+  color: oklch(0.2 0.012 50);
+}
+.page-lede {
+  font-family: "Inter", sans-serif;
+  font-size: 19px;
+  line-height: 1.7;
+  color: oklch(0.4 0.02 50);
+  margin: 0;
 }
 
 /* ---------- Tea list ---------- */
