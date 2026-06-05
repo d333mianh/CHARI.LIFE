@@ -52,10 +52,10 @@ html, body {
 .nav-left a.active { border-bottom-color: oklch(0.55 0.13 35); }
 
 .logo {
-  font-family: "Shippori Mincho", Georgia, serif;
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-family: "Playfair Display", "Shippori Mincho", Georgia, serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   text-transform: none;
   color: oklch(0.2 0.012 50);
 }
@@ -72,11 +72,11 @@ html, body {
   max-width: 760px;
 }
 .page-title {
-  font-family: "Shippori Mincho", serif;
-  font-size: 56px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.05;
+  font-family: "Playfair Display", "Shippori Mincho", serif;
+  font-size: 84px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
   margin: 0 0 20px;
   color: oklch(0.2 0.012 50);
 }
