@@ -33,6 +33,7 @@ So a typical "apply teas.md" request means: edit `index.html`'s tea rows to matc
 | Price | `100g · Yk ₫` segments split on ` / `, joined with `<br>` | same, newline-joined |
 
 Gotchas:
+- **Price tiering rule (active + future teas).** Only the **100g** price is set by hand; the three smaller weights are *derived* so each step down to a smaller weight adds **+10% to the per-gram cost** (compounding). Concretely: `50g = 100g ÷2 ×1.10`, `25g = 100g ÷4 ×1.21`, `10g = 100g ÷10 ×1.331`, each rounded to the nearest 5k. So a 100g of `400k` → `50g · 220k / 25g · 120k / 10g · 55k`. Apply this to every new tea and recompute the smaller tiers whenever a 100g price changes. (Drink sets in `sets.html` are single flat prices — the rule does **not** apply to them.)
 - The **№ column is display position only** — when rows are reordered in `teas.md`, renumber them 01..N in their new physical order ("normalize").
 - Every `Photo` filename must exist in `photos/`. After bulk edits, verify: `grep -o 'photos/[^"]*\.jpeg' index.html | sed 's|photos/||' | while read f; do [ -f "photos/$f" ] || echo "MISSING $f"; done`
 - The page is fixed-width desktop: `<meta name="viewport" content="width=1280">`, `#root { width: 1280px }`. Photos are 260×260 circular (`border-radius: 50%`, `object-fit: cover`). Colors are `oklch()`. Fonts: Shippori Mincho (serif), Inter (sans), JetBrains Mono (mono) via Google Fonts.
