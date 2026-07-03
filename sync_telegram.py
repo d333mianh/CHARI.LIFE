@@ -55,6 +55,15 @@ INDEX_HEADER = "🍵 Roman&Julia teas — catalogue"
 INDEX_FOOTER = "→ tap a tea to open its post"
 PIN_INDEX = True
 
+# "Contact to order" block shown at the bottom of the pinned index post, plus a
+# tappable button per contact. Each entry is (display_name, telegram_username
+# without @). Set to [] to remove the block entirely.
+ORDER_HEADING = "📩 To order / Для замовлення"
+ORDER_CONTACTS = [
+    ("Julia", "Lina_yogastan"),
+    ("Roman", "romankryzhan"),
+]
+
 
 # ---------- env ----------
 
@@ -320,10 +329,16 @@ def channel_username(chat):
 
 
 def index_markup():
-    """The index post carries only the global website button (if set)."""
+    """The index post carries an order button per contact (top row), then the
+    global website button (if set)."""
+    rows = []
+    if ORDER_CONTACTS:
+        rows.append([{"text": f"✍️ {name}",
+                      "url": f"https://t.me/{uname}"}
+                     for name, uname in ORDER_CONTACTS])
     if WEBSITE_URL:
-        return {"inline_keyboard": [[{"text": WEBSITE_LABEL, "url": WEBSITE_URL}]]}
-    return None
+        rows.append([{"text": WEBSITE_LABEL, "url": WEBSITE_URL}])
+    return {"inline_keyboard": rows} if rows else None
 
 
 def build_index_text(teas, items, username):
@@ -352,6 +367,12 @@ def build_index_text(teas, items, username):
                 lines.append(f"• {name}")
         lines.append("")
     lines.append(html.escape(INDEX_FOOTER))
+    if ORDER_CONTACTS:
+        lines.append("")
+        lines.append(f"<b>{html.escape(ORDER_HEADING)}</b>")
+        for name, uname in ORDER_CONTACTS:
+            lines.append(f'{html.escape(name)} → '
+                         f'<a href="https://t.me/{uname}">@{uname}</a>')
     return "\n".join(lines)
 
 
