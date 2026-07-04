@@ -42,13 +42,6 @@
       "has_photo": true,
       "name": "Elephant Thai shen"
     },
-    "yuan-xiang-bu-lang": {
-      "message_id": 11,
-      "hash": "4b65bc46927fd810f1fbadf9d389094f2ad3d8a16a5b28c3e49813b36a575461",
-      "markup": "",
-      "has_photo": true,
-      "name": "Yuan Xiang Bu Lang"
-    },
     "puerh-pincha": {
       "message_id": 12,
       "hash": "64e35e62b4483461d6421b58fe0f927197af0c9bcc0287e7e2159c3ce3b6716c",
@@ -108,7 +101,7 @@
   },
   "index": {
     "message_id": 3,
-    "hash": "a141811321467ddca43c1fc318432f58745da20bc0ad437608aeedaccf133766",
+    "hash": "e4bae156bd2b2452424df0f1a8e4d7bba41e8d0ffb4ed284068377b246a10d66",
     "pinned": true,
     "markup": "{\"inline_keyboard\": [[{\"text\": \"✍️ Julia\", \"url\": \"https://t.me/Lina_yogastan\"}, {\"text\": \"✍️ Roman\", \"url\": \"https://t.me/romankryzhan\"}]]}"
   }
