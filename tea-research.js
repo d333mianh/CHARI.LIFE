@@ -10,8 +10,8 @@ const teas = [
     evidence: "The owner confirms the Bai Hao Yin Zhen identity and the 2025 year. Public references support the standard Silver Needle style; the exact origin and batch still need provenance.",
     missing: ["Country and province", "Original packaging or supplier", "Harvest season or batch code"],
     guardrail: "Use standard Silver Needle context only where it fits this batch, and do not infer a Fujian origin without evidence.",
-    draftEn: "A 2025 Silver Needle white tea with the quiet clarity of a bud-led style. Meadow flowers, fresh hay and a touch of melon sweetness rest on a smooth, lightly creamy body.",
-    draftRu: "Белый чай «Серебряные иглы» урожая 2025 года с тихим, прозрачным характером почечного белого чая. Ноты луговых цветов, свежего сена и лёгкой дынной сладости раскрываются на гладкой, чуть кремовой текстуре.",
+    draftEn: "Silver buds open with the hush of early morning: meadow flowers, sun-warmed hay and a cool trace of melon. The liquor is clear and softly creamy, leaving a fine, quiet sweetness behind.",
+    draftRu: "Серебристые почки напоминают о тишине раннего утра — луговых цветах, прогретом солнцем сене и прохладной ноте дыни. Настой прозрачный, мягкий и чуть кремовый, с тонкой сладостью в послевкусии.",
     sources: [
       ["Silver Needle reference", "https://www.chineseteagroup.com/products/silver-needle-white-tea-bai-hao-yin-zhen"],
       ["Tea Guardian", "https://www.teaguardian.com/quality-varieties/tea-varieties/silver-needles-white-tea/"],
@@ -29,8 +29,8 @@ const teas = [
     evidence: "The owner accepts Dong Fang Mei Ren and supplied a matching Thai black-tea reference from Yoshi En. It describes Qing Xin, leafhopper-bitten material and strong oxidation; those batch facts still need confirmation for our tea.",
     missing: ["Country, farm and producer", "Cultivar", "Confirm that “Black” is the producer's processing label", "Leafhopper-bitten material confirmation"],
     guardrail: "The name family is identified; origin, leafhopper action and processing details still belong to this specific batch and must not be assumed.",
-    draftEn: "A Thai black tea in the Dong Fang Mei Ren tradition, with the honeyed fruit and generous oxidation associated with this style. Ripe peach and nectar meet a gentle malty depth, while a soft floral lift keeps the cup clear. The finish is creamy, sweet and quietly persistent across later infusions.",
-    draftRu: "Тайский чёрный чай в стиле Дун Фан Мэй Жэнь — с медовой фруктовостью и глубокой ферментацией, характерными для этого направления. Спелый персик и нектар соединяются с мягким солодовым тоном, а лёгкая цветочность сохраняет чистоту вкуса. Послевкусие кремовое, сладкое и долгое.",
+    draftEn: "This Thai interpretation of Dong Fang Mei Ren opens with honeyed peach and ripe fruit, deepened by a soft current of malt. A breath of flowers lifts the dark liquor; the finish is creamy, sweet and lingering.",
+    draftRu: "Тайская интерпретация Дун Фан Мэй Жэнь раскрывается медовым персиком и спелыми фруктами, оттенёнными мягким солодовым тоном. Лёгкая цветочность оживляет тёмный настой; финал кремовый, сладкий и долгий.",
     sources: [
       ["Owner-selected Yoshi En source", "https://www.yoshien.com/en/thai-oriental-beauty-black-tea-organic.html"],
       ["Thai Oriental Beauty context", "https://siamteas.com/thai-teas/overview-teas-from-north-thailand/dms-cha-nang-ngam-oriental-beauty-oolong-tea-north-thailands-dong-fang-mei-ren/"]
@@ -47,8 +47,8 @@ const teas = [
     evidence: "The owner supplied a Thai Oriental Beauty oolong reference and a separate GABA Dong Fang Mei Ren listing confirms the GABA combination. The exact meaning of “Green” and the processing of our batch remain supplier-specific.",
     missing: ["Country, farm and producer", "Origin and cultivar", "What “Green” means in the producer's range", "Leafhopper and GABA-process confirmation"],
     guardrail: "Use the decoded name, but do not call this conventional green tea or invent an oxidation level until the supplier explains “Green.”",
-    draftEn: "A lighter expression of GABA Dong Fang Mei Ren, pairing honeyed fruit with a brighter floral line. Peach and white grape unfold over orchid, citrus peel and a trace of warm spice. Smooth in texture and gently rounded, it leaves a long, clean sweetness without becoming heavy.",
-    draftRu: "Более лёгкая версия ГАБА-улуна Дун Фан Мэй Жэнь, где медовая фруктовость сочетается с яркой цветочной линией. Персик и белый виноград раскрываются оттенками орхидеи, цитрусовой цедры и тёплых специй. Текстура мягкая и округлая, а чистая сладость долго остаётся в послевкусии.",
+    draftEn: "A lighter, brighter GABA expression, with peach and white grape over notes of orchid, citrus peel and warm spice. Silky and gently rounded, it finishes with a long, clean honeyed sweetness.",
+    draftRu: "Более лёгкая и светлая версия ГАБА раскрывается персиком и белым виноградом, к которым добавляются ноты орхидеи, цитрусовой цедры и тёплых специй. Настой шелковистый и мягко округлый, с долгим, чистым медовым послевкусием.",
     sources: [
       ["Owner-selected Yoshi En source", "https://www.yoshien.com/en/thailand-oriental-beauty-oolong.html"],
       ["GABA Dong Fang Mei Ren example", "https://miychay.com/en/ulun-bez-dobavok/gaba-dun-fan-mey-zhen-skhidna-krasunya-vid-maystra-khao-2379/"],
@@ -66,8 +66,8 @@ const teas = [
     evidence: "The owner confirms 2026 and Qing Xin, and supplied Yoshi En's Thai Ruby Oolong as a flavour reference. A second GABA Ruby source supports the jammy berry side of the style; neither page is treated as our batch record.",
     missing: ["Country and growing region", "Producer", "Harvest season and processing details"],
     guardrail: "Build the profile around this Qing Xin batch; do not borrow Ruby №18 / Red Jade cultivar facts.",
-    draftEn: "A fruit-forward GABA oolong made from Qing Xin, with the warmth of a more deeply oxidised style. Apricot and peach lead into berry preserve and a faint pastry sweetness. The finish is juicy and rounded, with a gentle tart edge that keeps the ripe fruit lively.",
-    draftRu: "Фруктовый ГАБА-улун из сорта Цин Синь, тёплый и насыщенный благодаря более глубокой ферментации. Абрикос и персик переходят в оттенки ягодного варенья и лёгкой выпечки. Послевкусие сочное и округлое, с мягкой кислинкой, которая оживляет спелую фруктовость.",
+    draftEn: "Qing Xin wrapped in the warmth of deeper oxidation: apricot and peach spill into berry preserve and a whisper of warm pastry. A flicker of tartness brightens the rounded, juicy finish and keeps the ripe fruit alive.",
+    draftRu: "Тепло глубокой ферментации обрамляет Цин Синь: абрикос и персик переходят в ягодное варенье и едва уловимую ноту тёплой выпечки. Искра кислинки освежает округлый, сочный финал и сохраняет спелую фруктовость живой.",
     sources: [
       ["Owner-selected Yoshi En source", "https://www.yoshien.com/en/thai-ruby-oolong-organic.html"],
       ["Qing Xin example", "https://teagallery.eu/products/gaba-ruby"]
@@ -84,8 +84,8 @@ const teas = [
     evidence: "The owner confirms the product name; the front wrapper independently supports shou/ripe processing and Product of Thailand. The back has been checked and contains no additional identifying details.",
     missing: ["Any inner ticket or purchase record", "Producer, growing region, year and weight"],
     guardrail: "Keep “Elephant” as the confirmed catalogue product name, while separating it from producer and factory facts that are still unknown.",
-    draftEn: "A Thai shou with the dark, rounded character of ripe processing. Clean wood and toasted grain lead into caramelised sweetness, while the body stays smooth and dense rather than heavy.",
-    draftRu: "Тайский шу с тёмным, округлым настоем и мягкой плотностью, характерными для зрелой ферментации. Чистые древесные ноты и поджаренное зерно переходят в карамельную сладость, а вкус остаётся гладким и насыщенным, но не тяжёлым.",
+    draftEn: "Dark wood and toasted grain gather in a deep, rounded cup, then soften into caramel. Smooth and velvety, this Thai shou carries weight without heaviness, its warmth lingering quietly after the last sip.",
+    draftRu: "Ноты тёмной древесины и поджаренного зерна собираются в глубоком, округлом настое, а затем смягчаются карамелью. Гладкий и бархатистый тайский шу остаётся плотным, но не тяжёлым, и долго хранит тепло после последнего глотка.",
     sources: [
       ["Thai craft shou production", "https://tea-side.com/blog/craft-shu-puerh-tea-interview/"],
       ["Thai shou market context", "https://tea-village.com/en/4-pu-erh"]
@@ -102,8 +102,8 @@ const teas = [
     evidence: "The owner confirms the product name; the front wrapper independently supports sheng/raw processing and Product of Thailand. The back has been checked and contains no additional identifying details.",
     missing: ["Any inner ticket or purchase record", "Producer, growing region, year and weight"],
     guardrail: "Use “sheng” in the final English and Russian names, and do not infer a region, producer or vintage from the front wrapper.",
-    draftEn: "A Thai sheng made in the raw, slowly evolving style. Comparable northern Thai teas move between herbaceous freshness, dry wood and gentle dried-fruit sweetness, with light astringency giving the cup structure.",
-    draftRu: "Тайский шэн, выполненный в сыром стиле и рассчитанный на постепенное развитие. У близких северотаиландских чаёв травянистая свежесть сочетается с сухим деревом и мягкой сладостью сухофруктов, а лёгкая терпкость собирает вкус.",
+    draftEn: "In the northern Thai sheng style, green herbs and dry wood move slowly toward the sweetness of dried fruit. A fine thread of astringency holds the cup together, leaving it fresh, poised and made to evolve.",
+    draftRu: "В северотаиландском стиле шэна зелёные травы и сухое дерево постепенно переходят в сладость сухофруктов. Тонкая нить терпкости собирает настой, оставляя его свежим, собранным и готовым меняться со временем.",
     sources: [
       ["Northern Thai sheng example", "https://www.siam-teas.com/product/wild-thai-sheng-hei-cha-pu-er-style/"],
       ["Northern Thai pu-erh context", "https://www.hoyumtea.com/en/post/doi-wawee"]
@@ -120,8 +120,8 @@ const teas = [
     evidence: "The wrapper reads 原香布朗, identifies ripe pu-erh and 357 g, and matches a public 2011 product record.",
     missing: ["Back-wrapper or inner-ticket photo to confirm year and factory"],
     guardrail: "Research-ready flavour direction: smooth, sweet, dense and dark-chocolate-like. Confirm against our actual cup before final copy.",
-    draftEn: "A mature 2011 Bulang ripe pu-erh with a clear red-brown liquor and a dense, polished body. It begins smooth and sweet, then gathers weight into a silky texture with dark-chocolate depth. Later infusions grow lighter without turning thin, returning to a clean and persistent sweetness.",
-    draftRu: "Выдержанный буланский шу-пуэр 2011 года с прозрачным красно-коричневым настоем и плотной, отполированной текстурой. Сначала он мягкий и сладкий, затем набирает вес, становится шелковистым и уходит в глубину тёмного шоколада. В поздних проливах вкус светлеет, но не пустеет, возвращаясь к чистой и долгой сладости.",
+    draftEn: "A clear red-brown liquor opens softly, then deepens into silk, dark chocolate and quiet sweetness. Across later infusions this 2011 Bulang grows lighter but never hollow, leaving a clean echo long after the cup is empty.",
+    draftRu: "Прозрачный красно-коричневый настой начинается мягко, а затем углубляется в шелковистую текстуру, тёмный шоколад и тихую сладость. В поздних проливах этот буланский шу 2011 года светлеет, но не пустеет, оставляя чистое эхо уже после того, как чашка опустела.",
     sources: [
       ["Archived product", "https://steepster.com/teas/yunnan-sourcing/49416-2011-ye-zhuang-shuang-li-red-label-yuan-xiang-bu-lang-ripe-puerh"],
       ["2011 tasting article", "https://m.guchaju.com/cha/4271.html"]
@@ -136,12 +136,11 @@ const teas = [
     statusLabel: "Owner confirmed",
     targetName: "TAI GUO CHI TSE PIN CHA · 泰國七子餅茶 · 泰國普洱茶 · ชาผู่เอ๋อร์ ประเทศไทย — Thai shou pu-erh, 200 g",
     catalogueName: "Tai Guo Chi Tse Pin Cha",
-    catalogueMeta: "Thai Qizi Bingcha · 泰國七子餅茶 · 泰國普洱茶 · ชาผู่เอ๋อร์ ประเทศไทย · NET: 200g",
     evidence: "The wrapper prints TAI GUO CHI TSE PIN CHA, 泰國七子餅茶, 泰國普洱茶, ชาผู่เอ๋อร์ ประเทศไทย and NET: 200g. The owner confirms that this cake is shou pu-erh and identifies an interesting sour note in the cup.",
     missing: ["Any inner ticket or purchase record", "Producer, growing region within Thailand and year"],
     guardrail: "Treat the shou process and sour taste as owner-confirmed. Preserve the wrapper's names, but do not infer a factory, region or vintage that the packaging does not provide.",
-    draftEn: "Tai Guo Chi Tse Pin Cha is a 200 g Thai shou pu-erh cake. Its dark, smooth body carries an intriguing sour note that cuts through the earthy, gently sweet depth and keeps the cup lively.",
-    draftRu: "Tai Guo Chi Tse Pin Cha — тайский шу-пуэр в 200-граммовом блине. Тёмный, мягкий вкус оживляет необычная кислинка: она проходит сквозь землистую сладость и делает настой более выразительным.",
+    draftEn: "An unusual bright sour note threads through its dark, smooth body, sharpening the earthy sweetness and keeping the cup unexpectedly alive.",
+    draftRu: "Необычная яркая кислинка проходит сквозь тёмный, гладкий настой, подчёркивает землистую сладость и делает чашку неожиданно живой.",
     sources: [
       ["Qizi Bingcha format reference", "https://chamart.jp/en/archives/learn_kinds/yunnanqizibingcha_china/"]
     ]
@@ -157,8 +156,8 @@ const teas = [
     evidence: "The owner confirms Jin Xuan Oolong №12 and the 2026 year, and directs us to use the broad taste profile from Yoshi En's Soft Stem / Ruan Zhi №17 page. The identity remains Jin Xuan №12.",
     missing: ["Country and producer", "Confirm natural aroma versus added flavouring", "Harvest season or batch code", "Actual-cup check against the borrowed flavour direction"],
     guardrail: "Use only the broad No.17 flavour direction at the owner's request. Do not transfer its cultivar, award, oxidation, organic certification, farm or harvest facts to Jin Xuan №12.",
-    draftEn: "A balanced, easy-drinking oolong with a clean vegetal sweetness. Fresh green notes and soft meadow florals rest on a smooth, lightly rounded body. The finish is calm and gently sweet, making the tea refreshing without sharpness and comfortable across repeated infusions.",
-    draftRu: "Сбалансированный улун для лёгкого повседневного чаепития, с чистой растительной сладостью. Свежие зелёные ноты и мягкие луговые цветы раскрываются на гладкой, слегка округлой текстуре. Послевкусие спокойное и деликатно-сладкое; чай освежает без резкости и сохраняет ровный характер в последующих проливах.",
+    draftEn: "Fresh green notes and meadow flowers float over a soft, rounded body. Calm and lightly sweet, this Jin Xuan refreshes without sharpness and returns through many infusions with the same unhurried grace.",
+    draftRu: "Свежая зелень и луговые цветы плывут над мягкой, округлой текстурой. Спокойный и деликатно-сладкий Цзинь Сюань освежает без резкости и в каждом новом проливе сохраняет ту же неторопливую лёгкость.",
     sources: [
       ["Owner-directed flavour reference: Soft Stem №17", "https://www.yoshien.com/en/thai-soft-stem-oolong-organic.html"],
       ["Jin Xuan №12", "https://www.teafromtaiwan.com/blog/6_jinxuan-milk-oolong-tea.html"],
@@ -176,8 +175,8 @@ const teas = [
     evidence: "The wrapper and public listing align on Yeren Shan, Myanmar, raw tea, 500 g and the same ancient-tree presentation.",
     missing: ["Back-wrapper confirmation of the 2024 date"],
     guardrail: "Present “single tree” and “800 years” as wrapper or producer claims, not independently verified facts.",
-    draftEn: "A 500 g Myanmar sheng sold under the Yeren Shan “Ancient Tree” name. The cup is rich, strong and full-bodied, opening with clear bitterness and astringency that soften quickly into a fresh, coherent finish. The wrapper's “single tree” and “800 years” language remains a producer claim, not an independently verified fact.",
-    draftRu: "Пятисотграммовый мьянманский шэн под названием Yeren Shan «Древнее дерево». Настой насыщенный, крепкий и полнотелый: заметные горечь и терпкость быстро смягчаются, оставляя свежий, цельный финал. Указания «одно дерево» и «800 лет» остаются заявлениями на обёртке или со стороны производителя, а не независимо подтверждёнными фактами.",
+    draftEn: "Strong and full-bodied, this Myanmar sheng opens with clear bitterness and astringency before settling into a fresh, composed finish. The phrases “single tree” and “800 years” appear on the wrapper and are not independently verified.",
+    draftRu: "Крепкий, полнотелый мьянманский шэн раскрывается выраженной горечью и терпкостью, которые сменяются свежим, цельным финалом. Надписи «одно дерево» и «800 лет» присутствуют на обёртке, но независимо не подтверждены.",
     sources: [
       ["Matching product", "https://puermarket.ru/product/2024-yeren-shan-drevnie-derevya-shen-puer-500g"]
     ]
@@ -193,8 +192,8 @@ const teas = [
     evidence: "The owner identifies the cake as coming from Phongsali village in Laos. Old-tree sheng-style tea from northern Laos is a real category, but this unwrapped cake still cannot be matched to a producer or year.",
     missing: ["Original wrapper or purchase record", "Producer or tea garden in Phongsali village", "Year and cake weight", "Evidence behind the 400-year claim"],
     guardrail: "Use Phongsali village as owner-supplied provenance. Present “400-year-old tree” as a supplier or product claim, not an independently verified age.",
-    draftEn: "A sheng-style tea from Phongsali village in northern Laos, a region where tea is gathered from tall old trees and brewed through many infusions. Comparable Phongsali cakes lean soft and sweet, with fresh green notes, light florals and a mineral, gently creamy finish.",
-    draftRu: "Шэн в лаосском стиле из деревни Пхонгсали на севере страны, где чай собирают с высоких старых деревьев и заваривают многими проливами. Близкие по происхождению блины обычно мягкие и сладкие, со свежими зелёными нотами, лёгкой цветочностью, минеральностью и чуть кремовым финалом.",
+    draftEn: "From Phongsali in northern Laos, this sheng-style tea comes from a landscape of tall old tea trees. Teas of the region often unfold softly: fresh green leaves, pale flowers, mineral sweetness and a gently creamy close.",
+    draftRu: "Этот шэн происходит из Пхонгсали на севере Лаоса, региона, известного высокими старыми чайными деревьями. Чаи из этой местности обычно раскрываются мягко: свежей зеленью, светлыми цветочными нотами, минеральной сладостью и нежным кремовым финалом.",
     sources: [
       ["Comparable Laos tea", "https://onerivertea.com/collections/new-vintage/products/2022-spring-laos-gushu-sheng-puer"],
       ["Age-claim context", "https://www.helvetas.org/en/switzerland/how-you-can-help/follow-us/multimedia-stories-from-our-projects/laos-tea-tree"]

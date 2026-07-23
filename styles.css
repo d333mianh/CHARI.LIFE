@@ -1,12 +1,14 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: oklch(0.91 0.018 72);
+  background: oklch(0.895 0.012 76);
 }
 
 #root {
+  --catalogue-blue: oklch(0.47 0.05 235);
   width: 1280px;
   margin: 0 auto;
+  background: oklch(0.925 0.012 76);
   font-family: "Shippori Mincho", "Hiragino Mincho ProN", Georgia, serif;
   color: oklch(0.2 0.012 50);
   font-weight: 400;
@@ -20,6 +22,7 @@ html, body {
   background:
     radial-gradient(ellipse at 30% 20%, oklch(0.94 0.018 72) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 95%, oklch(0.87 0.022 65) 0%, transparent 50%);
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -30,7 +33,7 @@ html, body {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 32px 64px;
-  border-bottom: 1px solid oklch(0.78 0.018 60);
+  border-bottom: 1px solid oklch(0.72 0.022 235);
   font-family: ui-monospace, "JetBrains Mono", monospace;
   font-size: 11px;
   letter-spacing: 0.22em;
@@ -49,7 +52,7 @@ html, body {
   transition: border-color 0.2s, color 0.2s;
 }
 .nav-left a:hover { color: oklch(0.2 0.012 50); }
-.nav-left a.active { border-bottom-color: oklch(0.55 0.13 35); }
+.nav-left a.active { border-bottom-color: var(--catalogue-blue); }
 
 .logo {
   font-family: "Playfair Display", "Shippori Mincho", Georgia, serif;
@@ -64,7 +67,7 @@ html, body {
 .section {
   position: relative;
   padding: 120px 64px;
-  border-bottom: 1px solid oklch(0.78 0.018 60);
+  border-bottom: 1px solid oklch(0.76 0.016 235);
 }
 
 .page-head {
@@ -210,24 +213,82 @@ img.tea-photo {
   white-space: nowrap;
 }
 
-/* ---------- Applied bilingual catalogue ---------- */
+/* ---------- Bilingual catalogue ---------- */
 .catalogue-section {
-  padding: 80px 48px;
+  padding: 76px 56px;
 }
 
 .catalogue-section .tea {
-  grid-template-columns: 44px 220px minmax(0, 1fr) 168px;
-  gap: 24px;
-  padding: 38px 0;
+  --catalogue-accent: oklch(0.36 0.025 50);
+  position: relative;
+  grid-template-columns: 42px 210px minmax(0, 1fr) 188px;
+  gap: 28px;
+  padding: 54px 0;
+  border-color: oklch(0.73 0.022 235);
+  align-items: center;
+}
+
+.catalogue-section .tea[data-category="white"] {
+  --catalogue-accent: oklch(0.39 0.035 235);
+}
+
+.catalogue-section .tea[data-category="gaba"] {
+  --catalogue-accent: oklch(0.38 0.07 25);
+}
+
+.catalogue-section .tea[data-category="puerh-shou"] {
+  --catalogue-accent: oklch(0.34 0.05 50);
+}
+
+.catalogue-section .tea[data-category="puerh-sheng"] {
+  --catalogue-accent: oklch(0.38 0.055 120);
+}
+
+.catalogue-section .tea[data-category="oolong"] {
+  --catalogue-accent: oklch(0.42 0.055 80);
+}
+
+.catalogue-section .tea::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 54px;
+  bottom: 54px;
+  width: 4px;
+  border-radius: 999px;
+  background: var(--catalogue-accent);
 }
 
 .catalogue-section .tea-photo {
-  width: 220px;
-  height: 220px;
+  width: 210px;
+  height: 210px;
+  border: 0;
+  filter: saturate(0.72) contrast(0.98);
+  box-shadow: 0 16px 32px oklch(0.28 0.02 50 / 0.12);
 }
 
 .catalogue-section .tea-idx {
-  font-size: 12px;
+  align-self: start;
+  padding-top: 4px;
+  color: var(--catalogue-blue);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.catalogue-section .tea-idx-symbol,
+.catalogue-section .tea-idx-number {
+  display: block;
+}
+
+.catalogue-section .tea-idx-symbol {
+  margin-bottom: 10px;
+  font-size: 11px;
+}
+
+.catalogue-section .tea-idx-number {
+  font-size: 14px;
+  letter-spacing: 0.14em;
 }
 
 .catalogue-section .tea-name-row {
@@ -236,46 +297,28 @@ img.tea-photo {
 }
 
 .catalogue-section .tea-name {
-  font-size: 32px;
+  font-size: 35px;
+  font-weight: 400;
+  line-height: 1.04;
 }
 
 .catalogue-section .tea-name-row .tea-tags {
   order: -1;
   flex-basis: 100%;
   gap: 6px;
-  margin-bottom: 2px;
+  margin-bottom: 7px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
 }
 
-.catalogue-section .tea-name-row .tea-tag {
-  padding: 7px 12px;
-  border-color: transparent;
+.catalogue-section .tea-name-row .tea-tags .tea-tag {
+  padding: 6px 10px;
+  border: 0;
   border-radius: 999px;
-  background: oklch(0.32 0.03 50);
-  color: oklch(0.97 0.01 75);
-  box-shadow: 0 3px 10px oklch(0.2 0.02 50 / 0.14);
-}
-
-.catalogue-section .tea-tags[data-category="gaba"] .tea-tag {
-  background: oklch(0.41 0.13 24);
-}
-
-.catalogue-section .tea-tags[data-category="puerh-shou"] .tea-tag {
-  background: oklch(0.37 0.075 48);
-}
-
-.catalogue-section .tea-tags[data-category="puerh-sheng"] .tea-tag {
-  background: oklch(0.4 0.09 125);
-}
-
-.catalogue-section .tea-tags[data-category="oolong"] .tea-tag {
-  background: oklch(0.45 0.095 78);
-}
-
-.catalogue-section .tea-tags[data-category="white"] .tea-tag {
-  background: oklch(0.35 0.035 240);
+  background: var(--catalogue-accent);
+  color: #fff;
+  box-shadow: none;
 }
 
 .catalogue-section .tea-sub {
@@ -283,26 +326,28 @@ img.tea-photo {
   margin-top: 12px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 20px;
+  column-gap: 28px;
   font-size: 14px;
-  line-height: 1.5;
-}
-
-.catalogue-section .catalogue-meta {
-  grid-column: 1 / -1;
-  margin-bottom: 10px;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
+  line-height: 1.58;
+  color: oklch(0.31 0.012 50);
 }
 
 .catalogue-section .draft-copy {
+  display: block;
   min-width: 0;
 }
 
 .catalogue-section .tea-price {
-  font-size: 15px;
-  line-height: 1.7;
+  box-sizing: border-box;
+  padding: 20px 22px;
+  border: 1px solid oklch(0.67 0.035 235);
+  border-radius: 22px;
+  background: oklch(0.92 0.018 235 / 0.55);
+  box-shadow: 0 10px 28px oklch(0.42 0.04 235 / 0.07);
+  color: oklch(0.22 0.012 50);
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.75;
 }
 
 .catalogue-section .tea-price strong {
