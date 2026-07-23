@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Tea Description Studio — Roman&amp;Julia teas</title>
+  <meta name="description" content="A private working preview for verifying tea identities and preparing original English and Russian catalogue descriptions." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@600;700;800&family=Shippori+Mincho:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="tea-research.css" />
+</head>
+<body>
+  <div class="preview-shell">
+    <div class="paper" aria-hidden="true"></div>
+
+    <nav class="research-nav" aria-label="Working preview navigation">
+      <a class="nav-back" href="index.html">← Customer catalogue</a>
+      <div class="nav-brand">Roman&amp;Julia teas</div>
+      <div class="preview-badge">Working preview · not live</div>
+    </nav>
+
+    <main>
+      <header class="hero">
+        <div class="hero-copy">
+            <p class="eyebrow">Tea identity &amp; description studio · 23 July 2026</p>
+          <h1>Every tea,<br /><em>named truthfully.</em></h1>
+          <p class="hero-ru">Каждый чай — с точным именем.</p>
+          <p class="hero-lede">
+            This separate page is our shared workspace. It shows the current catalogue,
+            the proposed real identity of every tea, the accepted English and Russian
+            drafts, and the proof still needed before publishing them.
+          </p>
+        </div>
+        <aside class="scope-note" aria-label="Preview scope">
+          <span class="scope-mark">独</span>
+          <div>
+            <strong>Safe working copy</strong>
+            <p>This page does not change the customer catalogue, prices, Telegram posts, or <code>teas.md</code>.</p>
+          </div>
+        </aside>
+      </header>
+
+      <section class="metrics" aria-label="Research progress">
+        <article class="metric metric--confirmed">
+          <span class="metric-number" id="confirmed-count">9</span>
+          <span class="metric-label">owner-confirmed<br />identities</span>
+        </article>
+        <article class="metric metric--matched">
+          <span class="metric-number" id="matched-count">2</span>
+          <span class="metric-label">strong public<br />product matches</span>
+        </article>
+        <article class="metric metric--identity">
+          <span class="metric-number" id="identity-count">11</span>
+          <span class="metric-label">working identities<br />settled</span>
+        </article>
+        <article class="metric metric--copy">
+          <span class="metric-number"><i id="draft-count">11</i><span>/11</span></span>
+          <span class="metric-label">bilingual research<br />drafts</span>
+        </article>
+      </section>
+
+      <section class="definition" aria-labelledby="definition-title">
+        <div class="definition-head">
+          <p class="section-kicker">Definition of done</p>
+          <h2 id="definition-title">The goal we are completing</h2>
+          <p>A tea becomes “complete” only when all five checks are true.</p>
+        </div>
+        <ol class="goal-list">
+          <li><span>01</span><strong>Real identity</strong><small>Correct public name and tea type</small></li>
+          <li><span>02</span><strong>Traceable facts</strong><small>Origin, producer, year, cultivar and process where available</small></li>
+          <li><span>03</span><strong>Original English</strong><small>Short synthesis from several relevant sources, never copied</small></li>
+          <li><span>04</span><strong>Natural Russian</strong><small>A fluent Russian adaptation, not mechanical translation</small></li>
+          <li><span>05</span><strong>Truth guardrail</strong><small>Marketing and tree-age claims are attributed or removed</small></li>
+        </ol>
+      </section>
+
+      <section class="research-board" aria-labelledby="board-title">
+        <div class="board-head">
+          <div>
+            <p class="section-kicker">Catalogue research board</p>
+            <h2 id="board-title">11 teas · current → target</h2>
+          </div>
+          <div class="filters" aria-label="Filter tea research cards">
+            <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">All · 11</button>
+            <button class="filter" type="button" data-filter="confirmed" aria-pressed="false">Owner confirmed · 9</button>
+            <button class="filter" type="button" data-filter="matched" aria-pressed="false">Web matched · 2</button>
+          </div>
+        </div>
+
+        <div class="legend" aria-label="Research status legend">
+          <span><i class="dot dot--confirmed"></i> Identity confirmed by catalogue owner</span>
+          <span><i class="dot dot--matched"></i> Strong public product match</span>
+        </div>
+
+        <div class="tea-board" id="tea-board" aria-live="polite"></div>
+        <p class="empty-state" id="empty-state" hidden>No teas in this view.</p>
+      </section>
+
+      <section class="handoff" aria-labelledby="handoff-title">
+        <div>
+          <p class="section-kicker">Remaining provenance</p>
+          <h2 id="handoff-title">Identity is settled. Batch facts come next.</h2>
+        </div>
+        <div class="handoff-grid">
+          <article><span>DRAFTS</span><p>All 11 teas now have accepted English and Russian preview drafts. The customer-layout version is available in <code>catalogue-draft.html</code>.</p></article>
+          <article><span>OOLONG 09</span><p>The identity remains Jin Xuan №12. Its draft intentionally uses only the broad Soft Stem №17 flavour direction requested by the owner.</p></article>
+          <article><span>THAI CAKES</span><p>The backs were checked and contain no further information. Only an inner ticket, supplier, or purchase record can add provenance now.</p></article>
+          <article><span>PHONGSALI</span><p>Phongsali village is recorded for tea 11. Producer or garden, year, cake weight, and support for the 400-year claim remain open.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="research-footer">
+      <span>Roman&amp;Julia teas · internal research preview</span>
+      <a href="#top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">Back to top ↑</a>
+    </footer>
+  </div>
+
+  <script src="tea-research.js"></script>
+</body>
+</html>
