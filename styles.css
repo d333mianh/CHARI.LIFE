@@ -210,6 +210,105 @@ img.tea-photo {
   white-space: nowrap;
 }
 
+/* ---------- Applied bilingual catalogue ---------- */
+.catalogue-section {
+  padding: 80px 48px;
+}
+
+.catalogue-section .tea {
+  grid-template-columns: 44px 220px minmax(0, 1fr) 168px;
+  gap: 24px;
+  padding: 38px 0;
+}
+
+.catalogue-section .tea-photo {
+  width: 220px;
+  height: 220px;
+}
+
+.catalogue-section .tea-idx {
+  font-size: 12px;
+}
+
+.catalogue-section .tea-name-row {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.catalogue-section .tea-name {
+  font-size: 32px;
+}
+
+.catalogue-section .tea-name-row .tea-tags {
+  order: -1;
+  flex-basis: 100%;
+  gap: 6px;
+  margin-bottom: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.catalogue-section .tea-name-row .tea-tag {
+  padding: 7px 12px;
+  border-color: transparent;
+  border-radius: 999px;
+  background: oklch(0.32 0.03 50);
+  color: oklch(0.97 0.01 75);
+  box-shadow: 0 3px 10px oklch(0.2 0.02 50 / 0.14);
+}
+
+.catalogue-section .tea-tags[data-category="gaba"] .tea-tag {
+  background: oklch(0.41 0.13 24);
+}
+
+.catalogue-section .tea-tags[data-category="puerh-shou"] .tea-tag {
+  background: oklch(0.37 0.075 48);
+}
+
+.catalogue-section .tea-tags[data-category="puerh-sheng"] .tea-tag {
+  background: oklch(0.4 0.09 125);
+}
+
+.catalogue-section .tea-tags[data-category="oolong"] .tea-tag {
+  background: oklch(0.45 0.095 78);
+}
+
+.catalogue-section .tea-tags[data-category="white"] .tea-tag {
+  background: oklch(0.35 0.035 240);
+}
+
+.catalogue-section .tea-sub {
+  max-width: none;
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 20px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.catalogue-section .catalogue-meta {
+  grid-column: 1 / -1;
+  margin-bottom: 10px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.catalogue-section .draft-copy {
+  min-width: 0;
+}
+
+.catalogue-section .tea-price {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.catalogue-section .tea-price strong {
+  font-weight: 700;
+}
+
 /* ---------- Story ---------- */
 .story {
   display: grid;

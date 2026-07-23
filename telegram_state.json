@@ -1,74 +1,81 @@
 {
   "items": {
-    "baihao-yinzhen": {
+    "2025-bai-hao-yin-zhen": {
       "message_id": 5,
       "hash": "57194731c12fc5e2570a536331becf72d4eec70fb848cae48be3073216a9d06f",
       "markup": "",
       "has_photo": true,
-      "name": "Baihao Yinzhen"
+      "name": "2025 Bai Hao Yin Zhen"
     },
-    "dmfr-oriental-beauty-black": {
+    "dong-fang-mei-ren-oriental-beauty-black-tea": {
       "message_id": 6,
       "hash": "cd78a05a5e1f201610cc877e1dc0278c66f681aa7526aeed3cd09fc2f66386f1",
       "markup": "",
       "has_photo": true,
-      "name": "DMFR Oriental Beauty Black"
+      "name": "Dong Fang Mei Ren (Oriental Beauty) Black Tea"
     },
-    "gaba-dmfr-oriental-beauty-green": {
+    "gaba-dong-fang-mei-ren-oriental-beauty-green-version": {
       "message_id": 7,
       "hash": "bec95856dce6277ab2682fc82faa9ceeb5b715356661ece8a36b888d5783de69",
       "markup": "",
       "has_photo": true,
-      "name": "GABA DMFR Oriental Beauty Green"
+      "name": "GABA Dong Fang Mei Ren (Oriental Beauty) — “Green” version"
     },
-    "gaba-ruby": {
+    "2026-gaba-ruby-qing-xin-cultivar": {
       "message_id": 8,
       "hash": "264ca489fcca73cab65981824655751c4db536ef194344db1db41eacd0fc996b",
       "markup": "",
       "has_photo": true,
-      "name": "GABA Ruby"
+      "name": "2026 GABA Ruby — Qing Xin cultivar"
     },
-    "elephant-thai-shu": {
+    "thailand-pu-erh-shou-tea-elephant": {
       "message_id": 9,
       "hash": "1c78c4d2a2fe65225f21a905976643115d8347786931d12681a2fc70084d6d83",
       "markup": "",
       "has_photo": true,
-      "name": "Elephant Thai shu"
+      "name": "Thailand Pu-erh SHOU Tea “Elephant”"
     },
-    "elephant-thai-shen": {
+    "thailand-pu-erh-sheng-tea-elephant": {
       "message_id": 10,
       "hash": "c99d23ed939a1125c4caf948a0cf4dcb5cdb395509aa8239e2a4f556cead37b0",
       "markup": "",
       "has_photo": true,
-      "name": "Elephant Thai shen"
+      "name": "Thailand Pu-erh SHENG Tea “Elephant”"
     },
-    "puerh-pincha": {
+    "2011-ye-zhuang-shuang-li-yuan-xiang-bu-lang-ripe-pu-erh": {
+      "message_id": 11,
+      "hash": "4b65bc46927fd810f1fbadf9d389094f2ad3d8a16a5b28c3e49813b36a575461",
+      "markup": "",
+      "has_photo": true,
+      "name": "2011 Ye Zhuang Shuang Li “Yuan Xiang Bu Lang” ripe pu-erh"
+    },
+    "tai-guo-chi-tse-pin-cha": {
       "message_id": 12,
       "hash": "64e35e62b4483461d6421b58fe0f927197af0c9bcc0287e7e2159c3ce3b6716c",
       "markup": "",
       "has_photo": true,
-      "name": "Puerh Pincha"
+      "name": "Tai Guo Chi Tse Pin Cha"
     },
-    "oolong-12": {
+    "2026-jin-xuan-oolong-12": {
       "message_id": 13,
       "hash": "bbc9415122325e74c230bb77e3b25bf011842d4b0bb2ce160f8eb1b555d8b2a3",
       "markup": "",
       "has_photo": true,
-      "name": "Oolong 12"
+      "name": "2026 Jin Xuan Oolong #12"
     },
-    "myanmar-shen-puerh": {
+    "2024-yeren-shan-myanmar-ancient-tree-sheng-500-g": {
       "message_id": 14,
       "hash": "7d2454356b642bc8a504aca096eb598f885ae747aa031ea2c000be16290769e3",
       "markup": "",
       "has_photo": true,
-      "name": "Myanmar shen puerh"
+      "name": "2024 Yeren Shan “Myanmar Ancient Tree” sheng, 500 g"
     },
-    "laos-400yo": {
+    "phongsali-village-laos-400-year-old-tree-sheng-style-tea": {
       "message_id": 15,
       "hash": "0fbb99f4bf668ac060bcb58f1f5d8f657a15e6141969a8f1696c077b4fa97e66",
       "markup": "",
       "has_photo": true,
-      "name": "Laos 400yo"
+      "name": "Phongsali Village, Laos — 400-Year-Old-Tree SHENG-Style Tea"
     },
     "set-amber-kyusu-set": {
       "message_id": 16,

@@ -233,10 +233,10 @@ function teaCard(tea) {
   const copyEn = tea.draftEn || tea.copyConflictEn || "Pending batch facts, cross-source synthesis, and an actual-cup check.";
   const copyRu = tea.draftRu || tea.copyConflictRu || "Ждём данных о партии, сверки источников и дегустации этого чая.";
   const copyLabelEn = copyState === "draft"
-    ? "English description · research draft"
+    ? "English description · accepted copy"
     : copyState === "conflict" ? "English description · source conflict" : "English description · target";
   const copyLabelRu = copyState === "draft"
-    ? "Описание на русском · черновик"
+    ? "Описание на русском · принято"
     : copyState === "conflict" ? "Описание на русском · конфликт источников" : "Описание на русском · цель";
 
   return `
@@ -253,12 +253,12 @@ function teaCard(tea) {
 
         <div class="comparison">
           <div class="current">
-            <span class="current-label">Current catalogue</span>
+            <span class="current-label">Previous catalogue</span>
             <p class="current-name">${escapeHtml(tea.currentName)}</p>
             <p class="current-description">${currentDescription}</p>
           </div>
           <div class="target">
-            <span class="target-label">Target verified identity</span>
+            <span class="target-label">Applied verified identity</span>
             <p class="target-name">${escapeHtml(tea.targetName)}</p>
             <p class="evidence">${escapeHtml(tea.evidence)}</p>
           </div>

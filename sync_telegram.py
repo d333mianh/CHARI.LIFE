@@ -268,7 +268,9 @@ def caption(tea):
         tagtxt = " · ".join(html.escape(t.lstrip("*").strip()) for t in tea["tags"])
         lines.append(f"<i>{tagtxt}</i>")
     if tea["desc"]:
-        lines += ["", html.escape(tea["desc"])]
+        desc_lines = [part.strip() for part in tea["desc"].split(" // ")
+                      if part.strip()]
+        lines += [""] + [html.escape(part) for part in desc_lines]
     if tea["price"]:
         lines.append("")
         lines += [html.escape(p) for p in tea["price"]]
