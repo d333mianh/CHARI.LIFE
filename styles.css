@@ -248,6 +248,10 @@ img.tea-photo {
   --catalogue-accent: oklch(0.42 0.055 80);
 }
 
+.catalogue-section .tea[data-category="set"] {
+  --catalogue-accent: oklch(0.4 0.045 200);
+}
+
 .catalogue-section .tea::before {
   content: "";
   position: absolute;
