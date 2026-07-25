@@ -15,6 +15,11 @@ on:
       - photos/**
       - sync_telegram.py
   workflow_dispatch:
+    inputs:
+      prune:
+        description: 'Delete channel posts for items no longer synced (removed, or marked data-telegram="skip")'
+        type: boolean
+        default: false
 
 concurrency:
   group: telegram-sync          # never let two syncs race on the state file
@@ -37,7 +42,9 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python3 sync_telegram.py   # no --prune: too destructive for CI
+        # Push-triggered runs never prune. Pruning is opt-in and manual only:
+        # Actions → Run workflow → tick "prune" (or `gh workflow run … -f prune=true`).
+        run: python3 sync_telegram.py ${{ inputs.prune && '--prune' || '' }}
 
       - name: Commit updated state
         run: |

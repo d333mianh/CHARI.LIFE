@@ -6,9 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A single-page static site for **Roman&Julia teas** (brand "Roman&Julia teas", Telegram-only ordering, no buy flow) plus a tool that mirrors the same catalogue into the Telegram channel **@chariteas**. No build step, no framework — plain HTML/CSS and one zero-dependency Python script.
 
-The repo is also the **GitHub Pages source**: pushing to `main` republishes the live site at https://chari.life/ (remote `d333mianh/hoiantea`). Treat the repo as **public** — secrets live only in `.env` (gitignored).
+The repo is also the **GitHub Pages source**: pushing to `main` republishes the live site at https://chari.life/ (remote `d333mianh/CHARI.LIFE`). Treat the repo as **public** — secrets live only in `.env` (gitignored).
 
-Pushing to `main` also **auto-syncs the Telegram channel**: `.github/workflows/telegram-sync.yml` runs `sync_telegram.py` whenever `teas.md`, `sets.html`, `links.json`, `photos/`, or the script change (uses repo secrets `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID`). So in practice "apply teas.md" = edit `index.html` + `teas.md`, commit, push — the channel updates itself. Running the script locally is now optional (useful for `--dry-run`, `--prune`, or `--reset`, which the Action never does).
+Pushing to `main` also **auto-syncs the Telegram channel**: `.github/workflows/telegram-sync.yml` runs `sync_telegram.py` whenever `teas.md`, `sets.html`, `links.json`, `photos/`, or the script change (uses repo secrets `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID`). So in practice "apply teas.md" = edit `index.html` + `teas.md`, commit, push — the channel updates itself. Running the script locally is now optional (useful for `--dry-run` or `--reset`, which the Action never does). `--prune` is available in CI too, but only as a manual, opt-in `workflow_dispatch` input — push-triggered runs never prune.
 
 ## The central idea: `teas.md` is the single source of truth
 
@@ -19,7 +19,7 @@ Pushing to `main` also **auto-syncs the Telegram channel**: `.github/workflows/t
 
 So a typical "apply teas.md" request means: edit `index.html`'s tea rows to match, then (if asked) run the Telegram sync.
 
-**Drink sets are different: `sets.html` (the website page) is itself the source of truth — there is no `sets.md`.** The owner edits set cards directly in `sets.html`, so to avoid drift the Telegram sync parses that page (`sync_telegram.py`'s `parse_cards_html()` reads the `.tea` cards: name/desc/tags/price/photo). Sets post with `set-`-prefixed state keys (so they never collide with teas) and are grouped in the index under their first tag (currently `SET`). This means **editing a set on the website and pushing auto-syncs Telegram** — no second file to keep in step. There's also a static `ceremony.html` page (no data source). The three site pages are linked from the upper-left nav (`index.html` = Catalogue, `sets.html` = Drink Set, `ceremony.html` = Ceremony).
+**Drink sets are different: `sets.html` (the website page) is itself the source of truth — there is no `sets.md`.** The owner edits set cards directly in `sets.html`, so to avoid drift the Telegram sync parses that page (`sync_telegram.py`'s `parse_cards_html()` reads the `.tea` cards: name/desc/tags/price/photo). Sets post with `set-`-prefixed state keys (so they never collide with teas) and are grouped in the index under their first tag (currently `SET`). This means **editing a set on the website and pushing auto-syncs Telegram** — no second file to keep in step. **Website-only cards:** add `data-telegram="skip"` to a card's `<div class="tea" …>` and the sync ignores it — it is never posted, and if it was posted before, `--prune` deletes its message. The nine sets added on 2026-07-25 (№ 05–13) carry this flag. There's also a static `ceremony.html` page (no data source). The three site pages are linked from the upper-left nav (`index.html` = Catalogue, `sets.html` = Drink Set, `ceremony.html` = Ceremony).
 
 ### `teas.md` column → output mapping
 

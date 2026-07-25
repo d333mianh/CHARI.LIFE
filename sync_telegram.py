@@ -189,8 +189,11 @@ class _CardParser(HTMLParser):
         a = dict(attrs)
         classes = a.get("class", "").split()
         if tag == "div" and "tea" in classes:
+            # data-telegram="skip" keeps a card on the website only — it is
+            # never posted to the channel (and is pruned if already posted).
             self.cur = {"name": "", "desc": "", "tags": [],
-                        "price_parts": [], "photo": None}
+                        "price_parts": [], "photo": None,
+                        "skip": a.get("data-telegram") == "skip"}
             self.cards.append(self.cur)
             return
         if self.cur is None:
@@ -247,9 +250,8 @@ def parse_cards_html(path, key_prefix=""):
     with open(path, encoding="utf-8") as fh:
         p = _CardParser()
         p.feed(fh.read())
-    for i, c in enumerate(p.cards, 1):
-        if not c["name"]:
-            continue
+    posted = [c for c in p.cards if c["name"] and not c.get("skip")]
+    for i, c in enumerate(posted, 1):
         rows.append({
             "idx": f"{i:02d}",
             "name": html.unescape(c["name"]),
