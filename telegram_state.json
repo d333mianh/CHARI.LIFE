@@ -104,11 +104,74 @@
       "markup": "",
       "has_photo": true,
       "name": "Craft Tea Bowls"
+    },
+    "set-jade-drip-set": {
+      "message_id": 20,
+      "hash": "1c0f25a1c0528883231d929e415198103aa179ba805afc3677c7330a4f60327a",
+      "markup": "",
+      "has_photo": true,
+      "name": "Jade Drip Set · Нефритовый набор"
+    },
+    "set-tenmoku-leaf-tray-set": {
+      "message_id": 21,
+      "hash": "873d5e85c6b1e0132051bae876ccccdfcae6478ae3a0f67be17144cf900d7967",
+      "markup": "",
+      "has_photo": true,
+      "name": "Tenmoku Leaf Tray Set · Набор «Лист»"
+    },
+    "set-drip-glaze-set": {
+      "message_id": 22,
+      "hash": "9105297a7b42e3927a823641523941dcdb79ddd9844a779a8eb2af45d59a2089",
+      "markup": "",
+      "has_photo": true,
+      "name": "Drip Glaze Set · Набор с потёчной глазурью"
+    },
+    "set-sand-celadon-set": {
+      "message_id": 23,
+      "hash": "6b71597d08c1fbd3bdbf2701bea5e7955c4118de228ec0868ad9952dad564a20",
+      "markup": "",
+      "has_photo": true,
+      "name": "Sand Celadon Set · Песочный селадон"
+    },
+    "set-woven-pattern-set": {
+      "message_id": 24,
+      "hash": "19720838a72ec10ca1629b8bb320201214500c764eee712c306fafd69ff28ac4",
+      "markup": "",
+      "has_photo": true,
+      "name": "Woven Pattern Set · Плетёный узор"
+    },
+    "set-lilac-tenmoku-set": {
+      "message_id": 25,
+      "hash": "b9bac26d898f697cfadf5421b6ff845836c26579ba7e847f368443ef5cbcb263",
+      "markup": "",
+      "has_photo": true,
+      "name": "Lilac & Tenmoku Set · Сиреневый и тэммоку"
+    },
+    "set-red-clay-gilded-set": {
+      "message_id": 26,
+      "hash": "c81b0567348a7192cc22f4ca9adfcadd19c500a097f9b0db53d53412afbcba45",
+      "markup": "",
+      "has_photo": true,
+      "name": "Red Clay Gilded Set · Красная глина с золотом"
+    },
+    "set-unglazed-clay-teapots": {
+      "message_id": 27,
+      "hash": "52de9e194593bc638097968472c16935498bd12dd2898b06781046686690961d",
+      "markup": "",
+      "has_photo": true,
+      "name": "Unglazed Clay Teapots · Глиняные чайники"
+    },
+    "set-clay-teapots-assortment": {
+      "message_id": 28,
+      "hash": "95f9bfcc728ca28b3456a2ebcee3804627beae5a87bba1f43cfa29d22970c637",
+      "markup": "",
+      "has_photo": true,
+      "name": "Clay Teapots Assortment · Ассорти чайников"
     }
   },
   "index": {
     "message_id": 3,
-    "hash": "88c03a7a1bfd2300f17ddf34faf4c38b26d2723423b46c5ea48e463e644de72e",
+    "hash": "e160735dee8841b0ba287df589a5f2576faed8f0ff1040ae24fdd951c046f79c",
     "pinned": true,
     "markup": "{\"inline_keyboard\": [[{\"text\": \"✍️ Julia\", \"url\": \"https://t.me/Lina_yogastan\"}, {\"text\": \"✍️ Roman\", \"url\": \"https://t.me/romankryzhan\"}]]}"
   }
