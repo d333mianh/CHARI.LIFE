@@ -76,34 +76,6 @@
       "markup": "",
       "has_photo": true,
       "name": "Phongsali Village, Laos — 400-Year-Old-Tree SHENG-Style Tea"
-    },
-    "set-amber-kyusu-set": {
-      "message_id": 16,
-      "hash": "f4eac997c59ded08b9fd6a1985551f8c76c1f4dc9ca245388c22378b75dcf927",
-      "markup": "",
-      "has_photo": true,
-      "name": "Amber Kyusu Set"
-    },
-    "set-charcoal-kyusu-set": {
-      "message_id": 17,
-      "hash": "2cf99c9d98389bcb18841bd9d3658a637324d6f38e834be082fa560b021e4a13",
-      "markup": "",
-      "has_photo": true,
-      "name": "Charcoal Kyusu Set"
-    },
-    "set-lotus-porcelain-set": {
-      "message_id": 18,
-      "hash": "f596e05963b906baa6ab0c9ad92eb8aa1d405aa82356516fd000b9c765df644e",
-      "markup": "",
-      "has_photo": true,
-      "name": "Lotus Porcelain Set"
-    },
-    "set-craft-tea-bowls": {
-      "message_id": 19,
-      "hash": "aea21c6904c2a834e34a14e9cb6bf225f63b5067e6d3ca9a70778cfdce1326fa",
-      "markup": "",
-      "has_photo": true,
-      "name": "Craft Tea Bowls"
     }
   },
   "index": {
