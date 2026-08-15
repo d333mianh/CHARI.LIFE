@@ -2,98 +2,98 @@
   "items": {
     "2025-bai-hao-yin-zhen": {
       "message_id": 5,
-      "hash": "2722205d38bebbf9c5dca5e0408a4af7e8ba044663c02bd2cd34e15c50659581",
+      "hash": "617293cd20ed64c09a2a36720b13e3f1f738880f023bc4907446556469960f92",
       "markup": "",
       "has_photo": true,
       "name": "2025 Bai Hao Yin Zhen"
     },
     "dong-fang-mei-ren-oriental-beauty-black-tea": {
       "message_id": 6,
-      "hash": "8cd8541b40bdb9ae0cffcb8eb8848525cfeb3470b3a8c3a3589b0a3cbb5df057",
+      "hash": "5e4200e63f5bd4cdc24427d6b8f31e61c4468f50f29d1c0f15de1a1bd03cb565",
       "markup": "",
       "has_photo": true,
       "name": "Dong Fang Mei Ren (Oriental Beauty) Black Tea"
     },
     "gaba-dong-fang-mei-ren-oriental-beauty-green-version": {
       "message_id": 7,
-      "hash": "e6e487b1b4bf6c252b329f43eb0a51be1572ee81ffde93e71a620ca6369409b5",
+      "hash": "cdfc84869584429c76fd345d3516f85ea21ecd5af53e266c711419cb923c7de6",
       "markup": "",
       "has_photo": true,
       "name": "GABA Dong Fang Mei Ren (Oriental Beauty) — “Green” version"
     },
     "2026-gaba-ruby-qing-xin-cultivar": {
       "message_id": 8,
-      "hash": "bece225d2c2e2f30ebb723e4a66979b8a1b0c2815e7ea1e7c27b8f10c92ba0af",
+      "hash": "6d96e6986b4258f6195471b5766b365420aa6b3b78e93a977e995c2b6174f156",
       "markup": "",
       "has_photo": true,
       "name": "2026 GABA Ruby — Qing Xin cultivar"
     },
     "thailand-pu-erh-shou-tea-elephant": {
       "message_id": 9,
-      "hash": "eaa9ca8d8e9c17f4d836cc0d9a4259752b52b5041675bb1421059f918460ad8e",
+      "hash": "96bb404db9ccaf7621e95fc3d0577aa38b8ee86eda90803f4510baaa94c66e22",
       "markup": "",
       "has_photo": true,
       "name": "Thailand Pu-erh SHOU Tea “Elephant”"
     },
     "thailand-pu-erh-sheng-tea-elephant": {
       "message_id": 10,
-      "hash": "a6f84ba36df6ea384aa46a0ee48e3c0a845e70e6b4bd34bfa24713dd189c061b",
+      "hash": "6c4d328e56bf0966440e42712e130c75d73f6ece8edce25ce9b3558d8967b858",
       "markup": "",
       "has_photo": true,
       "name": "Thailand Pu-erh SHENG Tea “Elephant”"
     },
     "2011-ye-zhuang-shuang-li-yuan-xiang-bu-lang-ripe-pu-erh": {
       "message_id": 11,
-      "hash": "67f3b44fdb7553d50201e3db67c02d346556f80ca8f44ed615d6aa39a0c2fcfa",
+      "hash": "a301ba5b680c1bfaedc9d113c8e69d05e6128ea3d82e2dbba6fd8043f489fee3",
       "markup": "",
       "has_photo": true,
       "name": "2011 Ye Zhuang Shuang Li “Yuan Xiang Bu Lang” ripe pu-erh"
     },
     "tai-guo-chi-tse-pin-cha": {
       "message_id": 12,
-      "hash": "7ca62566d7b5e1c8580b1474b1c4e5fb23c48da57cae19333df987c712344ea2",
+      "hash": "dd6775e0f68f83e92461392873ceda303df1203ba7cecfa0e092f4d49963df3d",
       "markup": "",
       "has_photo": true,
       "name": "Tai Guo Chi Tse Pin Cha"
     },
     "2026-jin-xuan-oolong-12": {
       "message_id": 13,
-      "hash": "76fe2e4926755e9b5708e0adb1a7fa7ca5dcaf8949c4ae9c4cc5ec6d6424ef30",
+      "hash": "bccea6e00750e727ca2b0a6e0887e6f22b319ee21168be984e4ed9d53f2223e6",
       "markup": "",
       "has_photo": true,
       "name": "2026 Jin Xuan Oolong #12"
     },
     "2024-yeren-shan-myanmar-ancient-tree-sheng-500-g": {
       "message_id": 14,
-      "hash": "e2cc37f58965410987a7a08f9df5822e673cc69951421d3b92db79c5b369dabb",
+      "hash": "468658f7b4ef52752e9b3bab48245a65c366a7aabacbcf1b0a6752e10a94cd35",
       "markup": "",
       "has_photo": true,
       "name": "2024 Yeren Shan “Myanmar Ancient Tree” sheng, 500 g"
     },
     "phongsali-village-laos-400-year-old-tree-sheng-style-tea": {
       "message_id": 15,
-      "hash": "6b600f8bdf5a18b7a9b8020f43b11b9a0fdfeee4c6b8341bdb3245835041749b",
+      "hash": "8d7c139c8ed91bc526be759439afde4e5accd2c826b97386aaf376a49bbbfd16",
       "markup": "",
       "has_photo": true,
       "name": "Phongsali Village, Laos — 400-Year-Old-Tree SHENG-Style Tea"
     },
     "gaba-12": {
       "message_id": 29,
-      "hash": "dd4e9afbd26b1f406220315e84ca785761d816edf1b804a2b63d01dbde56c26d",
+      "hash": "e195d20781266e86562b7c5ecd1a6a44281e9ecdd4bd7e8b89386edde1669e86",
       "markup": "",
       "has_photo": false,
       "name": "GABA 12"
     },
     "gaba-oriental-beauty": {
       "message_id": 30,
-      "hash": "1f7ec82315bc164eff9a07846da273f9fb4de019bacf6aba9afdd95327f5e36a",
+      "hash": "0ad2359451d1b72a4e3c47fbd533ddd178195b37c2f1d84b2f19c632af0bea06",
       "markup": "",
       "has_photo": false,
       "name": "GABA Oriental Beauty"
     },
     "gaba-mixiang": {
       "message_id": 31,
-      "hash": "4e250c1e7d6cf235f16c96428845e7031a428dfbbc8971d091e49ff896cd124d",
+      "hash": "4b59ffef46f2f88c4135eec29d5f293f0cbdefc1fa6261e353dc650e7d4f2c54",
       "markup": "",
       "has_photo": false,
       "name": "GABA Mixiang"
