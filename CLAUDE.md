@@ -30,11 +30,11 @@ So a typical "apply teas.md" request means: edit `index.html`'s tea rows to matc
 | Description | ` // `-separated lines rendered inside `<p class="tea-sub">`; the live catalogue uses English and Russian columns | separate body lines |
 | Tags | `<span class="tea-tag">` (prefix `*` → `tea-tag-accent`, the clay-red pill) | `<i>` line, ` · `-joined |
 | Photo | `<img class="tea-photo" src="photos/X">`; **blank → kanji placeholder** `<div class="tea-photo">KANJI<span class="tea-photo-label">photo</span></div>` | uploaded photo |
-| Price | `100g · Yk ₫ · $Z` segments split on ` / `, rendered as rows with bold weights | same, newline-joined |
+| Price | `100g · ฿N · Yk ₫ · $Z` segments split on ` / `, rendered as rows with bold weights | same, newline-joined |
 
 Gotchas:
 - **Price tiering rule (active + future teas).** Only the **100g** price is set by hand; the three smaller weights are *derived* so each step down to a smaller weight adds **+10% to the per-gram cost** (compounding). Concretely: `50g = 100g ÷2 ×1.10`, `25g = 100g ÷4 ×1.21`, `10g = 100g ÷10 ×1.331`, each rounded to the nearest 5k. So a 100g of `400k` → `50g · 220k / 25g · 120k / 10g · 55k`. Apply this to every new tea and recompute the smaller tiers whenever a 100g price changes. (Drink sets in `sets.html` are single flat prices — the rule does **not** apply to them.)
-- **Dual currency (₫ + USD).** Every price segment shows the Vietnamese đồng price followed by its US dollar equivalent: `Xg · Yk ₫ · $Z` (sets: `1.5m ₫ · $58`). Convert at **26,000 ₫ = $1** and round to the nearest whole dollar. Recompute USD whenever the ₫ price changes.
+- **Triple currency (฿ + ₫ + USD).** Every price segment shows Thai baht, then Vietnamese đồng, then US dollars: `Xg · ฿N · Yk ₫ · $Z` (sets, if priced: `฿1165 · 1.5m ₫ · $58`). Convert THB at **790 ₫ = ฿1** (mid-market Aug 2026) and round to the nearest 5 ฿. Convert USD at **26,000 ₫ = $1** and round to the nearest whole dollar. THB always sits before ₫. Recompute both whenever the ₫ price changes.
 - The **№ column is display position only** — when rows are reordered in `teas.md`, renumber them 01..N in their new physical order ("normalize").
 - Every `Photo` filename must exist in `photos/`. After bulk edits, verify: `grep -o 'photos/[^"]*\.jpeg' index.html | sed 's|photos/||' | while read f; do [ -f "photos/$f" ] || echo "MISSING $f"; done`
 - The page is fixed-width desktop: `<meta name="viewport" content="width=1280">`, `#root { width: 1280px }`. Catalogue photos are 220×220 circular; set photos remain 260×260 (`border-radius: 50%`, `object-fit: cover`). Colors are `oklch()`. Fonts: Shippori Mincho (serif), Inter (sans), JetBrains Mono (mono) via Google Fonts.
