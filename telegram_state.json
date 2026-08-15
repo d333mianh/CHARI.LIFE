@@ -97,11 +97,18 @@
       "markup": "",
       "has_photo": false,
       "name": "GABA Mixiang"
+    },
+    "puerh-liubao-10-years": {
+      "message_id": 32,
+      "hash": "e6fa137f2fe411090b35c08e2cd93eef018937c170b07ecaa8723c7f2ab99377",
+      "markup": "",
+      "has_photo": true,
+      "name": "Puerh Liubao 10 Years"
     }
   },
   "index": {
     "message_id": 3,
-    "hash": "5b3776a6f675194e213cffddf240904771370f33bc78119f56785c4bcc7811c0",
+    "hash": "d40a4872f849d9b0885a6a80a2fb21833afed0745e7bafc6441c278cb223da6d",
     "pinned": true,
     "markup": "{\"inline_keyboard\": [[{\"text\": \"✍️ Julia\", \"url\": \"https://t.me/Lina_yogastan\"}, {\"text\": \"✍️ Roman\", \"url\": \"https://t.me/romankryzhan\"}]]}"
   }
