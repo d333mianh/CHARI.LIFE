@@ -207,6 +207,10 @@ body {
   align-items: center;
 }
 
+.tea[hidden] {
+  display: none !important;
+}
+
 .tea-price {
   font-family: "Shippori Mincho", Georgia, serif;
   font-size: 18px;
