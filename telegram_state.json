@@ -125,11 +125,18 @@
       "markup": "",
       "has_photo": true,
       "name": "2019 Jin Ya Gong Ting ripe pu-erh, 100 g"
+    },
+    "jin-ya-zhen-cang-ripe-pu-erh-100-g": {
+      "message_id": 36,
+      "hash": "3a8b8d461a7773f9ae42dd931aa662231c4f6a9ea89ff9f685aed04d96dd8fd1",
+      "markup": "",
+      "has_photo": true,
+      "name": "Jin Ya Zhen Cang ripe pu-erh, 100 g"
     }
   },
   "index": {
     "message_id": 3,
-    "hash": "ce8c879bf094a1b99a83eb2e76531e52ccf07ec7a67c11ae088060f2df813331",
+    "hash": "f47cff268340821f0facea847a236a95151e0bad47c8454a6886d2a8f88e2eac",
     "pinned": true,
     "markup": "{\"inline_keyboard\": [[{\"text\": \"✍️ Julia\", \"url\": \"https://t.me/Lina_yogastan\"}, {\"text\": \"✍️ Roman\", \"url\": \"https://t.me/romankryzhan\"}]]}"
   }
