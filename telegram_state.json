@@ -104,11 +104,32 @@
       "markup": "",
       "has_photo": true,
       "name": "Puerh Liubao 10 Years"
+    },
+    "thai-white-toucha": {
+      "message_id": 33,
+      "hash": "192a65e65827ea4485acb1538ffe7c45c669e0830d19ef75c38c5ab7f31067bd",
+      "markup": "",
+      "has_photo": true,
+      "name": "Thai White Toucha"
+    },
+    "thai-puerh-sheng-sencha": {
+      "message_id": 34,
+      "hash": "381f4b17e89d5b72ae243e3da5f0b97154e680a54bc16890b5f30d91583ba367",
+      "markup": "",
+      "has_photo": true,
+      "name": "Thai Puerh Sheng Sencha"
+    },
+    "2019-jin-ya-gong-ting-ripe-pu-erh-100-g": {
+      "message_id": 35,
+      "hash": "5aa5744bc0d729a324cc595614db7880eabbdba7c22d240a18c88322da458a2b",
+      "markup": "",
+      "has_photo": true,
+      "name": "2019 Jin Ya Gong Ting ripe pu-erh, 100 g"
     }
   },
   "index": {
     "message_id": 3,
-    "hash": "d40a4872f849d9b0885a6a80a2fb21833afed0745e7bafc6441c278cb223da6d",
+    "hash": "ce8c879bf094a1b99a83eb2e76531e52ccf07ec7a67c11ae088060f2df813331",
     "pinned": true,
     "markup": "{\"inline_keyboard\": [[{\"text\": \"✍️ Julia\", \"url\": \"https://t.me/Lina_yogastan\"}, {\"text\": \"✍️ Roman\", \"url\": \"https://t.me/romankryzhan\"}]]}"
   }
