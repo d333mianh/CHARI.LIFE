@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <title>Drink Sets · Roman&amp;Julia teas</title>
-  <meta name="viewport" content="width=1280" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Handmade Vietnamese tea sets from Roman &amp; Julia teas in Hoi An." />
+  <meta name="theme-color" content="#e8e0d2" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800;900&family=Shippori+Mincho:wght@400;500;600;700&display=swap" />
@@ -13,25 +15,26 @@
   <div id="root">
     <div class="paper"></div>
 
-    <nav class="nav">
+    <nav class="nav" aria-label="Site">
       <div class="nav-left">
-        <a href="index.html">Catalogue/Каталог</a>
-        <a class="active" href="sets.html">Drink Set/Наборы</a>
-        <a href="ceremony.html">Ceremony/Церемония</a>
+        <a href="index.html"><span>Catalogue</span><small>Каталог</small></a>
+        <a class="active" href="sets.html"><span>Drink Set</span><small>Наборы</small></a>
+        <a href="ceremony.html"><span>Ceremony</span><small>Церемония</small></a>
       </div>
       <div class="logo">Roman&amp;Julia teas</div>
       <div class="nav-right">
-        <a href="https://t.me/chariteas">Telegram ↗</a>
+        <a class="nav-telegram" href="https://t.me/chariteas">Telegram ↗</a>
       </div>
     </nav>
 
-    <section class="section catalogue-section">
+    <section class="section catalogue-section sets-section">
       <div class="page-head">
+        <p class="page-kicker">Vietnamese family workshop</p>
         <h1 class="page-title">Drink Sets · Наборы</h1>
-        <p class="page-lede">all tea sets manufactured many years by vietnamese family, so they are etnic and unique.</p>
+        <p class="page-lede">Tea sets made for many years by a Vietnamese family — ethnic, handmade, and unique. Ask on Telegram for the current pieces.</p>
       </div>
 
-      <div class="tea-list">
+      <div class="tea-list sets-list">
 
         <div class="tea" data-category="set" data-telegram="skip">
           <div class="tea-idx"><span class="tea-idx-symbol">№</span><span class="tea-idx-number">01</span></div>
@@ -143,5 +146,6 @@
       <div class="cta-giant">器</div>
     </section>
   </div>
+  <script src="site.js"></script>
 </body>
 </html>
